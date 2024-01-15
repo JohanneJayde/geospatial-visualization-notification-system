@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://openlayers.org/favicon.ico"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geospatial Visualization Tool for Fairchild AFB</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Fairchild Airforce Base Wildfire Notification System Demo</h1>
+    </nav>
+    <div id="content">
+      <div id="side-bar">
+        <div id="user-info">
+          <h3>Adding Points Using Structured Queries</h3>
+          <form id="structured-address-lookup-form">
+            <input
+              type="text"
+              name="street"
+              placeholder="Street, House Number and Street Name"
+              value="1048 W 1st Street"
+            />
+            <input type="text" name="city" placeholder="City" value="Cheney" />
+            <input
+              type="text"
+              name="county"
+              placeholder="County"
+              value="Spokane"
+            />
+            <input
+              type="text"
+              name="state"
+              placeholder="State"
+              value="Washington"
+            />
+            <input
+              type="text"
+              name="country"
+              placeholder="Country"
+              value="United States"
+            />
+            <input
+              type="text"
+              name="postalcode"
+              placeholder="Postal Code"
+              value="99004"
+            />
+            <input type="submit" value="Find Place via Structure" />
+          </form>
+
+          <h3>Adding Points using Freeform Query</h3>
+          <form id="free-form-address-lookup-form">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search"
+              value="Safeway, Cheney, Washington"
+            />
+
+            <input type="submit" value="Find Place via Freeform" />
+          </form>
+        </div>
+        <div id="selected-point-container">
+          <h3 id="selected-point-name">Name:</h3>
+
+          <div id="selected-point-content"></div>
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
