@@ -3,6 +3,7 @@
 NOTE: You must all ol and vite installed via npm
 
 Go into this github's local directory and start a development server (available at http://localhost:5173):
+
     npm start
 
 To generate a build ready for production:
