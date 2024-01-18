@@ -131,7 +131,8 @@ selectedPoint.on("select", function (e) {
   }
   selectCollection[0].setStyle(wildfirePointStyle);
 
-  console.log(selectCollection[0].get("IncidentName"));
+  document.getElementById("current-wildfire-selected").innerHTML =
+    selectCollection[0].get("IncidentName");
 });
 
 map.addInteraction(selectedPoint);
