@@ -132,7 +132,7 @@ selectedPoint.on("select", function (e) {
   selectCollection[0].setStyle(wildfirePointStyle);
 
   document.getElementById("current-wildfire-selected").innerHTML =
-    selectCollection[0].get("IncidentName");
+    "Current Wilfire Selected: " + selectCollection[0].get("IncidentName");
 });
 
 map.addInteraction(selectedPoint);
@@ -260,3 +260,14 @@ var freeFormQueryForm = document.getElementById(
   "free-form-address-lookup-form"
 );
 freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
+
+document.getElementById("get-distance").addEventListener("click", function () {
+  const featureAddresses = map
+    .getLayers()
+    .getArray()
+    .find((layer) => layer.get("name") == "plotted-points")
+    .getSource()
+    .getFeatures();
+
+  console.log(featureAddresses);
+});
