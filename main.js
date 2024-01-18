@@ -14,7 +14,10 @@ import Feature from "ol/Feature.js";
 import OSM from "ol/source/OSM";
 import Point from "ol/geom/Point.js";
 import { click } from "ol/events/condition";
-import { remove } from "ol/array";
+import { register } from "ol/proj/proj4";
+import proj4 from "proj4";
+
+register(proj4);
 
 /*
 This is serviceUrl. It contains the live fire data that will be draw using open layers
@@ -272,8 +275,19 @@ var calculateDistance = function () {
 
   const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
 
-  console.log(selectedWildfire);
-  console.log(featureAddresses);
+  console.log(
+    selectedWildfire
+      .getGeometry()
+      .clone()
+      .transform("EPSG:3857", "EPSG:4269")
+      .getCoordinates()
+  );
+
+  featureAddresses.forEach((feature) =>
+    console.log(
+      feature.getGeometry().transform("EPSG:3857", "EPSG:4269").getCoordinates()
+    )
+  );
 };
 
 document
