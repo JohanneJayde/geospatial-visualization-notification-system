@@ -114,6 +114,7 @@ const wildfirePointStyle = new Style({
 });
 
 const selectedPoint = new Select({
+  name: "wildfire-selct",
   style: null,
   condition: click,
   toggleCondition: click,
@@ -261,7 +262,7 @@ var freeFormQueryForm = document.getElementById(
 );
 freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
 
-document.getElementById("get-distance").addEventListener("click", function () {
+var calculateDistance = function () {
   const featureAddresses = map
     .getLayers()
     .getArray()
@@ -269,5 +270,12 @@ document.getElementById("get-distance").addEventListener("click", function () {
     .getSource()
     .getFeatures();
 
+  const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
+
+  console.log(selectedWildfire);
   console.log(featureAddresses);
-});
+};
+
+document
+  .getElementById("get-distance")
+  .addEventListener("click", calculateDistance);
