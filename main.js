@@ -22,10 +22,6 @@ const serviceUrl =
   "WFIGS_Incident_Locations_Current/FeatureServer/";
 const layer = 0;
 
-const perimeterServiceUrl =
-  "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/" +
-  "WFIGS_Interagency_Perimeters_Current/FeatureServer/";
-
 const vectorSource = new VectorSource({
   format: new EsriJSON(),
   url: function (extent, resolution, projection) {
@@ -101,8 +97,8 @@ const addressPointStyle = new Style({
   zIndex: Infinity,
 });
 
-const selectedPoint = new Select({});
-map.addInteraction(selectedPoint);
+//const selectedPoint = new Select({});
+//map.addInteraction(selectedPoint);
 
 var keys;
 var pointContent = document.getElementById("selected-point-content");
@@ -218,10 +214,10 @@ var addAddressPoint = async function (event) {
   );
 };
 
-var structuredQueryForm = document.getElementById(
-  "structured-address-lookup-form"
-);
-structuredQueryForm.addEventListener("submit", addAddressPoint, true);
+// var structuredQueryForm = document.getElementById(
+//   "structured-address-lookup-form"
+// );
+// structuredQueryForm.addEventListener("submit", addAddressPoint, true);
 
 var freeFormQueryForm = document.getElementById(
   "free-form-address-lookup-form"
