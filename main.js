@@ -13,6 +13,8 @@ import { tile as tileStrategy } from "ol/loadingstrategy.js";
 import Feature from "ol/Feature.js";
 import OSM from "ol/source/OSM";
 import Point from "ol/geom/Point.js";
+import { click } from "ol/events/condition";
+import { remove } from "ol/array";
 
 /*
 This is serviceUrl. It contains the live fire data that will be draw using open layers
@@ -97,8 +99,42 @@ const addressPointStyle = new Style({
   zIndex: Infinity,
 });
 
-//const selectedPoint = new Select({});
-//map.addInteraction(selectedPoint);
+const wildfirePointStyle = new Style({
+  image: new Circle({
+    radius: 5,
+    fill: new Fill({
+      color: "#FFFFFF",
+    }),
+    stroke: new Stroke({
+      color: "#FF0000",
+      width: 1.25,
+    }),
+  }),
+  zIndex: Infinity,
+});
+
+const selectedPoint = new Select({
+  style: null,
+  condition: click,
+  toggleCondition: click,
+  layers: function (layer) {
+    return layer.get("name") === "Wildfire Data";
+  },
+});
+
+selectedPoint.on("select", function (e) {
+  var selectCollection = selectedPoint.getFeatures().getArray();
+
+  if (selectCollection.length === 2) {
+    const old = selectCollection.shift();
+    old.setStyle(null);
+  }
+  selectCollection[0].setStyle(wildfirePointStyle);
+
+  console.log(selectCollection[0].get("IncidentName"));
+});
+
+map.addInteraction(selectedPoint);
 
 var keys;
 var pointContent = document.getElementById("selected-point-content");
