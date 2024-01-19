@@ -301,8 +301,60 @@ document
 
 async function fetchServiceMemberData(){
    const data = await fetch("./addresses.json").then(res => res.json().then(data => data));
-   console.log(data['service-members'][0]);
+
+   plotAllPoints(data['service-members']);
 }
+
+
+function plotAllPoints(data){
+  console.log(data);
+  for(let i = 0; i < data.length; i++){
+    console.log(jsonToQueryString(data[i]['address']));
+    const query = jsonToQueryString(data[i]['address']);
+
+    addServiceMemberPoint(query)
+
+  }
+
+}
+
+function jsonToQueryString(json) {
+  return '?' + 
+      Object.keys(json).map(function(key) {
+          return encodeURIComponent(key) + '=' +
+              encodeURIComponent(json[key]);
+      }).join('&');
+}
+
+var addServiceMemberPoint = async function (asString) {
+
+  const data = await fetch(
+    "https://nominatim.openstreetmap.org/search?" +
+      asString +
+      "&format=json&limit=1"
+  )
+    .then((response) => response.json())
+    .then((json) => {
+      return json;
+    });
+
+  if (data.length === 0) {
+    return;
+  }
+
+  let plottedPoints = getMapLayer("address-points");
+
+  plottedPoints.getSource().addFeature(
+    new Feature({
+      geometry: new Point(fromLonLat([data[0].lon, data[0].lat])),
+      data: data[0],
+    })
+  );
+};
+
+// function plotPoint(dataPoint){
+
+// }
 
 fetchServiceMemberData();
 
