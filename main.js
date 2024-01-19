@@ -3,12 +3,11 @@ import EsriJSON from "ol/format/EsriJSON.js";
 import Map from "ol/Map.js";
 import VectorSource from "ol/source/Vector.js";
 import View from "ol/View.js";
-import XYZ from "ol/source/XYZ.js";
 import { Circle, Fill, Stroke, Style } from "ol/style.js";
 import Select from "ol/interaction/Select.js";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer.js";
 import { createXYZ } from "ol/tilegrid.js";
-import { fromLonLat, transform } from "ol/proj.js";
+import { fromLonLat } from "ol/proj.js";
 import { tile as tileStrategy } from "ol/loadingstrategy.js";
 import Feature from "ol/Feature.js";
 import OSM from "ol/source/OSM";
@@ -16,6 +15,7 @@ import Point from "ol/geom/Point.js";
 import { click } from "ol/events/condition";
 import { register } from "ol/proj/proj4";
 import proj4 from "proj4";
+import {getDistance} from "ol/sphere"
 
 register(proj4);
 
@@ -275,6 +275,12 @@ var calculateDistance = function () {
 
   const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
 
+  const wfCoords = selectedWildfire
+      .getGeometry()
+      .clone()
+      .transform("EPSG:3857", "EPSG:4269")
+      .getCoordinates();
+
   console.log(
     selectedWildfire
       .getGeometry()
@@ -283,10 +289,16 @@ var calculateDistance = function () {
       .getCoordinates()
   );
 
-  featureAddresses.forEach((feature) =>
-    console.log(
-      feature.getGeometry().transform("EPSG:3857", "EPSG:4269").getCoordinates()
-    )
+  featureAddresses.forEach((feature) => {
+     const featCoords = feature
+    .getGeometry()
+    .clone()
+    .transform("EPSG:3857", "EPSG:4269")
+    .getCoordinates();
+
+    console.log(getDistance(wfCoords, featCoords ) * 0.00062137);
+  }
+      
   );
 };
 
