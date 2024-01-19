@@ -242,10 +242,7 @@ var addAddressPoint = async function (event) {
     return;
   }
 
-  let plottedPoints = map
-    .getLayers()
-    .getArray()
-    .find((layer) => layer.get("name") == "plotted-points");
+  let plottedPoints = getMapLayer("plotted-points");
 
   plottedPoints.getSource().addFeature(
     new Feature({
@@ -266,41 +263,37 @@ var freeFormQueryForm = document.getElementById(
 freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
 
 var calculateDistance = function () {
-  const featureAddresses = map
-    .getLayers()
-    .getArray()
-    .find((layer) => layer.get("name") == "plotted-points")
-    .getSource()
-    .getFeatures();
+  const featureAddresses = getMapLayer("plotted-points").getSource()
+  .getFeatures();
 
   const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
 
-  const wfCoords = selectedWildfire
-      .getGeometry()
-      .clone()
-      .transform("EPSG:3857", "EPSG:4269")
-      .getCoordinates();
+  const wfCoords = getFeatureLonLat(selectedWildfire);
 
-  console.log(
-    selectedWildfire
-      .getGeometry()
-      .clone()
-      .transform("EPSG:3857", "EPSG:4269")
-      .getCoordinates()
-  );
 
   featureAddresses.forEach((feature) => {
-     const featCoords = feature
-    .getGeometry()
-    .clone()
-    .transform("EPSG:3857", "EPSG:4269")
-    .getCoordinates();
+     const featCoords = getFeatureLonLat(feature);
 
     console.log(getDistance(wfCoords, featCoords ) * 0.00062137);
   }
       
   );
 };
+
+function getMapLayer(layerName){
+  return map
+  .getLayers()
+  .getArray()
+  .find((layer) => layer.get("name") == layerName)
+}
+
+function getFeatureLonLat(feature){
+ return feature
+    .getGeometry()
+    .clone()
+    .transform("EPSG:3857", "EPSG:4269")
+    .getCoordinates();
+}
 
 document
   .getElementById("get-distance")
