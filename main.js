@@ -263,8 +263,7 @@ var freeFormQueryForm = document.getElementById(
 freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
 
 var calculateDistance = function () {
-  const featureAddresses = getMapLayer("plotted-points").getSource()
-  .getFeatures();
+  const featureAddresses = getMapLayer("plotted-points").getSource().getFeatures();
 
   const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
 
