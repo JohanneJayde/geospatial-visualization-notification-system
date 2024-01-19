@@ -299,4 +299,10 @@ document
   .addEventListener("click", calculateDistance);
 
 
-  console.log(fetch("./addresses.json").then(res => res.json()))
+async function fetchServiceMemberData(){
+   const data = await fetch("./addresses.json").then(res => res.json().then(data => data));
+   console.log(data['service-members'][0]);
+}
+
+fetchServiceMemberData();
+
