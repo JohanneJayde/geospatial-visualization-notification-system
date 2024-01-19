@@ -179,7 +179,7 @@ var displayAddressInfo = function (pixel) {
     },
     {
       layerFilter: function (layer) {
-        return layer.get("name") === "plotted-points";
+        return layer.get("name") === "address-points";
       },
     }
   );
@@ -216,7 +216,7 @@ map.on("singleclick", function (evt) {
 
 //create layers where adress points are used
 const vectorLayer = new VectorLayer({
-  name: "plotted-points",
+  name: "address-points",
   style: addressPointStyle,
 });
 vectorLayer.setSource(new VectorSource({}));
@@ -242,7 +242,7 @@ var addAddressPoint = async function (event) {
     return;
   }
 
-  let plottedPoints = getMapLayer("plotted-points");
+  let plottedPoints = getMapLayer("address-points");
 
   plottedPoints.getSource().addFeature(
     new Feature({
@@ -263,17 +263,17 @@ var freeFormQueryForm = document.getElementById(
 freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
 
 var calculateDistance = function () {
-  const featureAddresses = getMapLayer("plotted-points").getSource().getFeatures();
+
+  const featureAddresses = getMapLayer("address-points").getSource().getFeatures();
 
   const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
 
   const wfCoords = getFeatureLonLat(selectedWildfire);
 
-
   featureAddresses.forEach((feature) => {
      const featCoords = getFeatureLonLat(feature);
 
-    console.log(getDistance(wfCoords, featCoords ) * 0.00062137);
+    console.log(getDistance(wfCoords, featCoords) * 0.00062137);
   }
       
   );
@@ -297,3 +297,6 @@ function getFeatureLonLat(feature){
 document
   .getElementById("get-distance")
   .addEventListener("click", calculateDistance);
+
+
+  console.log(fetch("./addresses.json").then(res => res.json()))

@@ -1,0 +1,17 @@
+{
+    "service-members" : [{
+        "name":"value1",
+        "email":"value2",
+        "phone-number": "value3",
+        "address": {
+              "street": "1048 W 1st",
+              "city": "Cheney",
+              "county": "Spokane",
+              "state": "Washington",
+              "country": "United States",
+              "postalcode": "99004"
+
+        }
+    }
+    ]
+}
