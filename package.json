@@ -7,11 +7,11 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^4.0.4"
+    "vite": "^4.5.2"
   },
   "dependencies": {
     "eslint": "^8.56.0",
-    "ol": "latest",
+    "ol": "^8.2.0",
     "proj4": "^2.10.0"
   }
 }

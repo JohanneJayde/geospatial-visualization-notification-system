@@ -5,12 +5,26 @@
         "email":"value2",
         "phone-number": "value3",
         "address": {
-              "street": "1048 W 1st",
+              "street": "2710 1st St",
               "city": "Cheney",
               "county": "Spokane",
               "state": "Washington",
               "country": "United States",
               "postalcode": "99004"
+
+        }
+    },
+    {
+        "name":"value1",
+        "email":"value2",
+        "phone-number": "value3",
+        "address": {
+              "street": "575 Bellevue Square",
+              "city": "Bellevue",
+              "county": "King",
+              "state": "Washington",
+              "country": "United States",
+              "postalcode": "98004"
 
         }
     },
@@ -25,6 +39,48 @@
               "state": "Washington",
               "country": "United States",
               "postalcode": "99004"
+
+        }
+    },
+    {
+        "name":"value1",
+        "email":"value2",
+        "phone-number": "value3",
+        "address": {
+              "street": "200 E Barker St",
+              "city": "Medical Lake",
+              "county": "Spokane",
+              "state": "Washington",
+              "country": "United States",
+              "postalcode": "99022"
+
+        }
+    },
+    {
+        "name":"value1",
+        "email":"value2",
+        "phone-number": "value3",
+        "address": {
+              "street": "460 N 6th St",
+              "city": "Cheney",
+              "county": "Spokane",
+              "state": "Washington",
+              "country": "United States",
+              "postalcode": "99004"
+
+        }
+    },
+    {
+        "name":"value1",
+        "email":"value2",
+        "phone-number": "value3",
+        "address": {
+              "street": "10201 NE 4th St",
+              "city": "Bellevue",
+              "county": "King",
+              "state": "Washington",
+              "country": "United States",
+              "postalcode": "98004"
 
         }
     }

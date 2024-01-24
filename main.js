@@ -306,21 +306,20 @@ async function fetchServiceMemberData(){
 }
 
 
-function plotAllPoints(data){
-  console.log(data);
+async function  plotAllPoints(data){
+  //console.log(data);
   for(let i = 0; i < data.length; i++){
-    console.log(jsonToQueryString(data[i]['address']));
     const query = jsonToQueryString(data[i]['address']);
-
+    console.log( i + " " + query);
     addServiceMemberPoint(query)
+    await wait(5000);
 
   }
 
 }
 
 function jsonToQueryString(json) {
-  return '?' + 
-      Object.keys(json).map(function(key) {
+  return Object.keys(json).map(function(key) {
           return encodeURIComponent(key) + '=' +
               encodeURIComponent(json[key]);
       }).join('&');
@@ -328,15 +327,7 @@ function jsonToQueryString(json) {
 
 var addServiceMemberPoint = async function (asString) {
 
-  const data = await fetch(
-    "https://nominatim.openstreetmap.org/search?" +
-      asString +
-      "&format=json&limit=1"
-  )
-    .then((response) => response.json())
-    .then((json) => {
-      return json;
-    });
+  const data = await fetchLonLatCoords(asString);
 
   if (data.length === 0) {
     return;
@@ -352,9 +343,37 @@ var addServiceMemberPoint = async function (asString) {
   );
 };
 
+async function fetchLonLatCoords(asString){
+
+console.log("https://nominatim.openstreetmap.org/search?" +
+asString +
+"&format=json&limit=1");
+
+  return await fetch(
+    "https://nominatim.openstreetmap.org/search?" +
+      asString +
+      "&format=jsonv2&limit=1"
+  ).then((response) => response.json())
+    .then((json) => {
+      return json;
+    }).catch(error => console.log(error));
+    
+}
+
+
+function wait(milliseconds){
+  return new Promise(resolve => {
+      setTimeout(resolve, milliseconds);
+  });
+}
+
+
 // function plotPoint(dataPoint){
 
 // }
 
-fetchServiceMemberData();
+
+document.getElementById("plot-button").addEventListener("click", ()=>{fetchServiceMemberData();});
+
+
 
