@@ -40,7 +40,7 @@ nav {
   padding: 1em;
   height: 100%;
   display: grid;
-  grid-template-rows: 10% 65% 20%;
+  grid-template-rows: 20% 80%;
 }
 
 #user-info {
@@ -48,17 +48,6 @@ nav {
   flex-direction: column;
   gap: 0.5em;
 }
-
-#selected-point-content {
-  height: 90%;
-  overflow-y: scroll;
-}
-
-/* #structured-address-lookup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-} */
 
 #free-form-address-lookup-form {
   display: flex;

@@ -16,7 +16,7 @@ import { click } from "ol/events/condition";
 import { register } from "ol/proj/proj4";
 import proj4 from "proj4";
 import {getDistance} from "ol/sphere"
-import { add } from "ol/coordinate";
+import { add, distance } from "ol/coordinate";
 
 register(proj4);
 
@@ -93,7 +93,7 @@ const addressPointStyle = new Style({
   image: new Circle({
     radius: 5,
     fill: new Fill({
-      color: "#000000",
+      color: "#FFFFFF",
     }),
     stroke: new Stroke({
       color: "#00FF00",
@@ -143,7 +143,6 @@ const selectedPoint = new Select({
 map.addInteraction(selectedPoint);
 
 var keys;
-var pointContent = document.getElementById("selected-point-content");
 var pointName = document.getElementById("selected-point-name");
 
 //create function for getting wildfire details from clicking points on maps
@@ -161,14 +160,13 @@ var displayWildfireInfo = function (pixel) {
   );
 
   if (feature) {
-    pointContent.innerHTML = "";
     pointName.innerHTML = "Name: ";
     keys = feature.getKeys();
 
     pointName.innerHTML += " " + feature.get("IncidentName");
-    for (let i = 0; i < keys.length; i++) {
-      pointContent.innerHTML += keys[i] + ": " + feature.get(keys[i]) + "<br>";
-    }
+    // for (let i = 0; i < keys.length; i++) {
+    //   pointContent.innerHTML += keys[i] + ": " + feature.get(keys[i]) + "<br>";
+    // }
   }
 };
 
@@ -186,14 +184,13 @@ var displayAddressInfo = function (pixel) {
   );
 
   if (feature) {
-    pointContent.innerHTML = "";
-    keys = Object.entries(feature.get("data"));
+    // keys = Object.entries(feature.get("data"));
 
-    for (let [attribute, value] of keys) {
-      pointContent.innerHTML += attribute + ": " + value + "<br>";
-    }
+    // for (let [attribute, value] of keys) {
+    //   pointContent.innerHTML += attribute + ": " + value + "<br>";
+    // }
 
-    pointName.innerHTML = "Name: " + feature.get("data")["display_name"];
+    pointName.innerHTML = "Name: " + feature.get("nominatimData")["display_name"];
   }
 };
 
@@ -203,7 +200,6 @@ var nonLayerPointDisplay = function (pixel) {
   });
 
   if (!feature) {
-    pointContent.innerHTML = "NA";
     pointName.innerHTML = "Name: NA";
   }
 };
@@ -276,6 +272,7 @@ var displayServiceMemberDistances = function (wildfireDistances){
 
   const distance_container = document.getElementById("distance-report");
 
+  distance_container.innerHTML = "";
 
   console.log(wildfireDistances);
 
@@ -290,7 +287,16 @@ var displayServiceMemberDistances = function (wildfireDistances){
     let distances = wildfireDistances[i]['distances'];
     for(let j = 0; j < distances.length; j++ ){
       const listItem = document.createElement("li");
-      listItem.innerHTML = distances[j]['display_address'] + " " + distances[j]['distance'];
+      const serviceMemeberDetail = document.createElement("ul");
+    
+      for(let [key, value] of Object.entries(distances[j])){
+        const detail = document.createElement("li");
+        detail.innerHTML = key + ": " + value;
+        serviceMemeberDetail.appendChild(detail);
+      }
+      
+     // listItem.innerHTML = distances[j]['display_address'] + " " + distances[j]['distance'];
+     listItem.appendChild(serviceMemeberDetail);
       distanceList.appendChild(listItem);
 
     }
@@ -322,9 +328,7 @@ var getAddressDistances = function (wildfire){
       email: memberData['email'],
       id: memberData['ID'],
       phone_number: memberData['phone_number'],
-      address: memberData['address'],
       display_address: nominatimData['display_name'],
-      nominatimData: nominatimData,
       distance: serviceMemberDistance
     });
   });
@@ -334,7 +338,7 @@ var getAddressDistances = function (wildfire){
 }
 
 function calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates){
-  return (getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137);
+  return (getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137).toFixed(2) + " Miles";
 }
 
 
