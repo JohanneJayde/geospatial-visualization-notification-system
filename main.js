@@ -275,11 +275,18 @@ var getAddressDistances = function (wildfire){
   const addressDistance = [];
 
   featureAddresses.forEach((feature) => {
+
+    const memberData = feature.get('memberData');
+
     const featCoords = getFeatureLonLat(feature);
-    addressDistance.push({
-      memberData: feature.get('memberData'),
+    addressDistance[memberData['ID']] = {
+      name: memberData['name'],
+      email: memberData['email'],
+      id: memberData['ID'],
+      phone_number: memberData['phone_number'],
+      address: memberData['address'],
       distance: getDistance(wildfireCoords, featCoords) * 0.00062137
-    });
+    };
   });
 
  return addressDistance;
