@@ -1,10 +1,10 @@
 {
     "service-members" : [
         {
-        "name":"value1",
-        "email":"value2",
+        "name":"Johan Smitth",
+        "email":"johnsmith@fake.email",
         "ID": 333949,
-        "phone-number": "value3",
+        "phone_number": "999-111-2293",
         "address": {
               "street": "2710 1st St",
               "city": "Cheney",
@@ -16,10 +16,10 @@
         }
     },
     {
-        "name":"value1",
-        "email":"value2",
+        "name":"David Jackson",
+        "email":"davidjackson@fake.email",
         "ID": 153945,
-        "phone-number": "value3",
+        "phone_number": "859-334-3290",
         "address": {
               "street": "575 Bellevue Square",
               "city": "Bellevue",
@@ -31,10 +31,10 @@
         }
     },
     {
-        "name":"value1",
-        "email":"value2",
+        "name":"Hannah Swartz",
+        "email":"hannahswartz@fake.email",
         "ID": 653642,
-        "phone-number": "value3",
+        "phone_number": "564-923-1290",
         "address": {
               "street": "526 5th",
               "city": "Cheney",
@@ -46,10 +46,10 @@
         }
     },
     {
-        "name":"value1",
-        "email":"value2",
+        "name":"Johnny Nadder",
+        "email":"johnnynadder@fake.email",
         "ID": 903030,
-        "phone-number": "value3",
+        "phone_number": "456-329-9010",
         "address": {
               "street": "200 E Barker St",
               "city": "Medical Lake",
@@ -61,10 +61,10 @@
         }
     },
     {
-        "name":"value1",
-        "email":"value2",
+        "name":"Sarah Ramous",
+        "email":"sarahramous@fake.email",
         "ID": 758345,
-        "phone-number": "value3",
+        "phone_number": "490-239-6899",
         "address": {
               "street": "460 N 6th St",
               "city": "Cheney",
@@ -76,10 +76,10 @@
         }
     },
     {
-        "name":"value1",
-        "email":"value2",
+        "name":"Jeff Johnson",
+        "email":"jeffjohnson@fake.email",
         "ID": 136849,
-        "phone-number": "value3",
+        "phone_number": "232-156-9375",
         "address": {
               "street": "10201 NE 4th St",
               "city": "Bellevue",

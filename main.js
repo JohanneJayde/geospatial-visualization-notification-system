@@ -16,7 +16,7 @@ import { click } from "ol/events/condition";
 import { register } from "ol/proj/proj4";
 import proj4 from "proj4";
 import {getDistance} from "ol/sphere"
-import { add, distance } from "ol/coordinate";
+import { FALSE, TRUE } from "ol/functions";
 
 register(proj4);
 
@@ -295,8 +295,7 @@ var displayServiceMemberDistances = function (wildfireDistances){
         serviceMemeberDetail.appendChild(detail);
       }
       
-     // listItem.innerHTML = distances[j]['display_address'] + " " + distances[j]['distance'];
-     listItem.appendChild(serviceMemeberDetail);
+      listItem.appendChild(serviceMemeberDetail);
       distanceList.appendChild(listItem);
 
     }
@@ -323,13 +322,22 @@ var getAddressDistances = function (wildfire){
 
     const serviceMemberDistance = calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates);
 
+    let isWithin10 = serviceMemberDistance < 10 ? true : false;
+    let isWithin25 = serviceMemberDistance < 25 ? true : false;
+  
+    if(serviceMemberDistance < 10){
+      isWithin10 = true;
+    }
+
     addressDistance.push( {
       name: memberData['name'],
       email: memberData['email'],
       id: memberData['ID'],
       phone_number: memberData['phone_number'],
       display_address: nominatimData['display_name'],
-      distance: serviceMemberDistance
+      distance: serviceMemberDistance,
+      isWithin10: isWithin10,
+      isWithin25: isWithin25,
     });
   });
 
@@ -338,7 +346,7 @@ var getAddressDistances = function (wildfire){
 }
 
 function calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates){
-  return (getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137).toFixed(2) + " Miles";
+  return getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137;
 }
 
 
@@ -417,13 +425,11 @@ async function fetchLonLatCoords(asString){
     
 }
 
-
 function wait(milliseconds){
   return new Promise(resolve => {
       setTimeout(resolve, milliseconds);
   });
 }
-
 
 document.getElementById("plot-button").addEventListener("click", ()=>{fetchServiceMemberData();});
 
