@@ -257,18 +257,36 @@ var calculateDistances = function () {
 
   const selectedWildfires = selectedPoint.getFeatures().getArray();
 
-  const wildFireDistances = [];
+  const wildfireDistances = [];
 
   selectedWildfires.forEach((wildfire) => {
-      wildFireDistances[wildfire.get("IncidentName")] = getAddressDistances(wildfire);
+    wildfireDistances.push({
+
+    wildfireName: wildfire.get("IncidentName"),
+    distances: getAddressDistances(wildfire)
+    });
   }      
   );
 
-  console.log(wildFireDistances);
-
-  displayServiceMemberDistances(wildFireDistances)
+  displayServiceMemberDistances(wildfireDistances)
 
 };
+
+var displayServiceMemberDistances = function (wildfireDistances){
+
+  const distance_container = document.getElementById("distance-report");
+  const distance_record = document.createElement("div");
+  const fireName = document.createElement("h1");
+  const distanceList = docment.createElement("ul");
+
+  for(let i = 0; i < wildfireDistances.length; i++){
+    console.log(wildfireDistances[i]['wildfireName'])
+    
+    console.log(wildfireDistances[i]['distances'])
+
+  }
+
+}
 
 var getAddressDistances = function (wildfire){
 
