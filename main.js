@@ -16,6 +16,7 @@ import { click } from "ol/events/condition";
 import { register } from "ol/proj/proj4";
 import proj4 from "proj4";
 import {getDistance} from "ol/sphere"
+import { add } from "ol/coordinate";
 
 register(proj4);
 
@@ -265,33 +266,46 @@ var calculateDistances = function () {
 
   console.log(wildFireDistances);
 
+  displayServiceMemberDistances(wildFireDistances)
+
 };
 
 var getAddressDistances = function (wildfire){
 
-  const wildfireCoords = getFeatureLonLat(wildfire);
-  const featureAddresses = getMapLayer("address-points").getSource().getFeatures();
+  const wildFireCoordinates = getFeatureLonLat(wildfire);
+  const serviceMembers = getMapLayer("address-points").getSource().getFeatures();
 
   const addressDistance = [];
 
-  featureAddresses.forEach((feature) => {
+  serviceMembers.forEach((serviceMember) => {
 
-    const memberData = feature.get('memberData');
+    const memberData = serviceMember.get('memberData');
+    const nominatimData = serviceMember.get('nominatimData');
 
-    const featCoords = getFeatureLonLat(feature);
-    addressDistance[memberData['ID']] = {
+    const serviceMemberCoordinates = getFeatureLonLat(serviceMember);
+
+    const serviceMemberDistance = calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates);
+
+    addressDistance.push( {
       name: memberData['name'],
       email: memberData['email'],
       id: memberData['ID'],
       phone_number: memberData['phone_number'],
       address: memberData['address'],
-      distance: getDistance(wildfireCoords, featCoords) * 0.00062137
-    };
+      display_address: nominatimData['display_name'],
+      nominatimData: nominatimData,
+      distance: serviceMemberDistance
+    });
   });
 
  return addressDistance;
 
 }
+
+function calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates){
+  return (getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137);
+}
+
 
 function getMapLayer(layerName){
   return map
@@ -349,7 +363,7 @@ var addServiceMemberPoint = async function (serviceMemberData) {
   plottedPoints.getSource().addFeature(
     new Feature({
       geometry: new Point(fromLonLat([data[0].lon, data[0].lat])),
-      data: data[0],
+      nominatimData: data[0],
       memberData: serviceMemberData
     })
   );
