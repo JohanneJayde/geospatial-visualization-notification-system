@@ -40,7 +40,7 @@ nav {
   padding: 1em;
   height: 100%;
   display: grid;
-  grid-template-rows: 10% 45% 45%;
+  grid-template-rows: 10% 65% 20%;
 }
 
 #user-info {
@@ -64,4 +64,8 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+#distance-report{
+  overflow-y: scroll;
 }

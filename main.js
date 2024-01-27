@@ -275,14 +275,27 @@ var calculateDistances = function () {
 var displayServiceMemberDistances = function (wildfireDistances){
 
   const distance_container = document.getElementById("distance-report");
-  const distance_record = document.createElement("div");
-  const fireName = document.createElement("h1");
-  const distanceList = docment.createElement("ul");
+
+
+  console.log(wildfireDistances);
 
   for(let i = 0; i < wildfireDistances.length; i++){
-    console.log(wildfireDistances[i]['wildfireName'])
-    
-    console.log(wildfireDistances[i]['distances'])
+
+    const distance_record = document.createElement("div");
+    const fireName = document.createElement("h3");
+    const distanceList = document.createElement("ul");
+
+    fireName.innerHTML = wildfireDistances[i]['wildfireName'];
+
+    let distances = wildfireDistances[i]['distances'];
+    for(let j = 0; j < distances.length; j++ ){
+      const listItem = document.createElement("li");
+      listItem.innerHTML = distances[j]['display_address'] + " " + distances[j]['distance'];
+      distanceList.appendChild(listItem);
+
+    }
+    distance_record.append(fireName,distanceList);
+    distance_container.append(distance_record);
 
   }
 
