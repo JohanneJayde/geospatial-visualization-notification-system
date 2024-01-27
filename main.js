@@ -252,38 +252,37 @@ var addAddressPoint = async function (event) {
   );
 };
 
-// var structuredQueryForm = document.getElementById(
-//   "structured-address-lookup-form"
-// );
-// structuredQueryForm.addEventListener("submit", addAddressPoint, true);
-
-var freeFormQueryForm = document.getElementById(
-  "free-form-address-lookup-form"
-);
-freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
-
 var calculateDistances = function () {
 
   const selectedWildfires = selectedPoint.getFeatures().getArray();
 
+  const wildFireDistances = [];
+
   selectedWildfires.forEach((wildfire) => {
-      calculateDistance(wildfire);
-  }
-      
+      wildFireDistances[wildfire.get("IncidentName")] = getAddressDistances(wildfire);
+  }      
   );
+
+  console.log(wildFireDistances);
+
 };
 
-var calculateDistance = function (wildfire){
+var getAddressDistances = function (wildfire){
 
   const wildfireCoords = getFeatureLonLat(wildfire);
-
   const featureAddresses = getMapLayer("address-points").getSource().getFeatures();
+
+  const addressDistance = [];
 
   featureAddresses.forEach((feature) => {
     const featCoords = getFeatureLonLat(feature);
+    addressDistance.push({
+      memberData: feature.get('memberData'),
+      distance: getDistance(wildfireCoords, featCoords) * 0.00062137
+    });
+  });
 
-   console.log(wildfire.get("IncidentName") + " " + getDistance(wildfireCoords, featCoords) * 0.00062137);
- });
+ return addressDistance;
 
 }
 
@@ -315,13 +314,9 @@ async function fetchServiceMemberData(){
 
 
 async function  plotAllPoints(data){
-  //console.log(data);
   for(let i = 0; i < data.length; i++){
-    const query = jsonToQueryString(data[i]['address']);
-    console.log( i + " " + query);
-    addServiceMemberPoint(query)
+    addServiceMemberPoint(data[i])
     await wait(1000);
-
   }
 
 }
@@ -333,9 +328,10 @@ function jsonToQueryString(json) {
       }).join('&');
 }
 
-var addServiceMemberPoint = async function (asString) {
+var addServiceMemberPoint = async function (serviceMemberData) {
 
-  const data = await fetchLonLatCoords(asString);
+  const query = jsonToQueryString(serviceMemberData['address']);
+  const data = await fetchLonLatCoords(query);
 
   if (data.length === 0) {
     return;
@@ -347,15 +343,12 @@ var addServiceMemberPoint = async function (asString) {
     new Feature({
       geometry: new Point(fromLonLat([data[0].lon, data[0].lat])),
       data: data[0],
+      memberData: serviceMemberData
     })
   );
 };
 
 async function fetchLonLatCoords(asString){
-
-console.log("https://nominatim.openstreetmap.org/search?" +
-asString +
-"&format=json&limit=1");
 
   return await fetch(
     "https://nominatim.openstreetmap.org/search?" +

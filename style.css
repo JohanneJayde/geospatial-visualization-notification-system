@@ -40,7 +40,7 @@ nav {
   padding: 1em;
   height: 100%;
   display: grid;
-  grid-template-rows: 20% 10% 50% 20%;
+  grid-template-rows: 10% 45% 45%;
 }
 
 #user-info {
