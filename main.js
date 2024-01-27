@@ -118,7 +118,7 @@ const wildfirePointStyle = new Style({
 
 const selectedPoint = new Select({
   name: "wildfire-selct",
-  style: null,
+  style: wildfirePointStyle,
   condition: click,
   toggleCondition: click,
   layers: function (layer) {
@@ -126,17 +126,17 @@ const selectedPoint = new Select({
   },
 });
 
-selectedPoint.on("select", function (e) {
-  var selectCollection = selectedPoint.getFeatures().getArray();
+ selectedPoint.on("select", function (e) {
+//   var selectCollection = selectedPoint.getFeatures().getArray();
 
-  if (selectCollection.length === 2) {
-    const old = selectCollection.shift();
-    old.setStyle(null);
-  }
-  selectCollection[0].setStyle(wildfirePointStyle);
+//   if (selectCollection.length === 2) {
+//     const old = selectCollection.shift();
+//     old.setStyle(null);
+//   }
+//   selectCollection[0].setStyle(wildfirePointStyle);
 
-  document.getElementById("current-wildfire-selected").innerHTML =
-    "Current Wilfire Selected: " + selectCollection[0].get("IncidentName");
+//   document.getElementById("current-wildfire-selected").innerHTML =
+//     "Current Wilfire Selected: " + selectCollection[0].get("IncidentName");
 });
 
 map.addInteraction(selectedPoint);
@@ -262,22 +262,30 @@ var freeFormQueryForm = document.getElementById(
 );
 freeFormQueryForm.addEventListener("submit", addAddressPoint, true);
 
-var calculateDistance = function () {
+var calculateDistances = function () {
 
-  const featureAddresses = getMapLayer("address-points").getSource().getFeatures();
+  const selectedWildfires = selectedPoint.getFeatures().getArray();
 
-  const selectedWildfire = selectedPoint.getFeatures().getArray()[0];
-
-  const wfCoords = getFeatureLonLat(selectedWildfire);
-
-  featureAddresses.forEach((feature) => {
-     const featCoords = getFeatureLonLat(feature);
-
-    console.log(getDistance(wfCoords, featCoords) * 0.00062137);
+  selectedWildfires.forEach((wildfire) => {
+      calculateDistance(wildfire);
   }
       
   );
 };
+
+var calculateDistance = function (wildfire){
+
+  const wildfireCoords = getFeatureLonLat(wildfire);
+
+  const featureAddresses = getMapLayer("address-points").getSource().getFeatures();
+
+  featureAddresses.forEach((feature) => {
+    const featCoords = getFeatureLonLat(feature);
+
+   console.log(wildfire.get("IncidentName") + " " + getDistance(wildfireCoords, featCoords) * 0.00062137);
+ });
+
+}
 
 function getMapLayer(layerName){
   return map
@@ -296,7 +304,7 @@ function getFeatureLonLat(feature){
 
 document
   .getElementById("get-distance")
-  .addEventListener("click", calculateDistance);
+  .addEventListener("click", calculateDistances);
 
 
 async function fetchServiceMemberData(){
@@ -312,7 +320,7 @@ async function  plotAllPoints(data){
     const query = jsonToQueryString(data[i]['address']);
     console.log( i + " " + query);
     addServiceMemberPoint(query)
-    await wait(5000);
+    await wait(1000);
 
   }
 
@@ -366,11 +374,6 @@ function wait(milliseconds){
       setTimeout(resolve, milliseconds);
   });
 }
-
-
-// function plotPoint(dataPoint){
-
-// }
 
 
 document.getElementById("plot-button").addEventListener("click", ()=>{fetchServiceMemberData();});
