@@ -433,5 +433,84 @@ function wait(milliseconds){
 
 document.getElementById("plot-button").addEventListener("click", ()=>{fetchServiceMemberData();});
 
+const info = document.getElementById('info');
+
+let currentFeature;
+const displayPopUpWildFire = function (pixel, target) {
+  const feature = target.closest('.ol-control')
+    ? undefined
+    : map.forEachFeatureAtPixel(pixel, function (feature) {
+        return feature;
+      },
+    {
+      layerFilter: function (layer) {
+        return layer.get("name") === "Wildfire Data";
+      },
+    });
+  if (feature) {
+    info.style.left = pixel[0] + 'px';
+    info.style.top = pixel[1] + 'px';
+
+    if (feature !== currentFeature) {
+      info.style.visibility = 'visible';
+      info.innerText = feature.get('IncidentName');
+    }
+  } else {
+    info.style.visibility = 'hidden';
+  }
+  currentFeature = feature;
+};
+
+const displayServiceMemberInfo = function (pixel, target) {
+  const feature = target.closest('.ol-control')
+    ? undefined
+    : map.forEachFeatureAtPixel(pixel, function (feature) {
+        return feature;
+      },
+    {
+      layerFilter: function (layer) {
+        return layer.get("name") === "address-points";
+      },
+    });
+  if (feature) {
+    info.style.left = pixel[0] + 'px';
+    info.style.top = pixel[1] + 'px';
+
+    if (feature !== currentFeature) {
+      info.style.visibility = 'visible';
+      info.innerText = feature.get('memberData')['name'];
+    }
+  } else {
+    info.style.visibility = 'hidden';
+  }
+  currentFeature = feature;
+};
+
+map.on('pointermove', function (evt) {
+  if (evt.dragging) {
+    info.style.visibility = 'hidden';
+    currentFeature = undefined;
+    return;
+  }
+  const pixel = map.getEventPixel(evt.originalEvent);
+
+  displayPopUpWildFire(pixel, evt.originalEvent.target);
+});
+
+map.on('pointermove', function (evt) {
+  if (evt.dragging) {
+    info.style.visibility = 'hidden';
+    currentFeature = undefined;
+    return;
+  }
+  const pixel = map.getEventPixel(evt.originalEvent);
+
+  displayServiceMemberInfo(pixel, evt.originalEvent.target);
+});
+
+map.getTargetElement().addEventListener('pointerleave', function () {
+  currentFeature = undefined;
+  info.style.visibility = 'hidden';
+});
 
 
