@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*================================================== */
+            /* Header and Containers */
+/*================================================== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 10px 10px 10px;
+    background-color: #596869;
+    color: #D9D9D9;
+    width: 100%;
+    height: 40px;
+}
+
+.container div {
+    display: inline-block;
+    margin-left:-5px;
+
+}
+
+body {
+    background-image: url("https://i.imgur.com/QLJXl2l.png");
+    background-size: 1650px;
+}
+
+/*================================================== */
+            /* Icon and Logos Function */
+/*================================================== */
+/* Icon Style */
+.fa-solid {
+    font-family: "Font Awesome 6 Pro", serif;
+    font-size: 1.65rem;
+    align-items: center;
+}
+
+/* Button for Icons */
+button {
+    background: transparent;
+    color: #E6EFE6;
+    border-style: none;
+}
+
+/* Hover over buttons, changes to white */
+button:hover {
+    color: hotpink;
+}
+
+
+/*================================================== */
+     /* Alignment for Layers/Icon inside of div */
+/*================================================== */
+#layers, #info, #user-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40px;
+    height:40px;
+}
+/* Vertical Line */
+#layers {
+    border-right: 1px solid #485556;
+}
+
+/* Fairchild Logo alignment */
+.logo {
+    cursor: pointer;
+    padding-left: 10px;
+    padding-top: 3px;
+}
+
+/*================================================== */
+   /* Dropdown Menu for Account, Info, and Layers */
+/*================================================== */
+
+
+/*================================================== */
+                 /* SideBar Icons */
+/*================================================== */
+.sidebar-left {
+    display:grid;
+    gap: 1rem;
+    padding: 10px 8px;
+}
+
+.sidebar-left .fa-solid, .sidebar-right .fa-solid{
+    background-color: #3B4242;
+    color: #E6EFE6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+}
+
+.sidebar-left .fa-solid:hover, .sidebar-right .fa-solid:hover {
+    background-color: #3B4242;
+    color: hotpink;
+}
+
+.sidebar-right {
+    padding: 90px 8px;
+}
+
+#zoom-in {
+    border-bottom: 1px solid #1D2222;
+}
