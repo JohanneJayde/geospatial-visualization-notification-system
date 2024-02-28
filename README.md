@@ -1,13 +1,20 @@
-# OpenLayers + Vite
+# OpenLayers + Webpack
 
-NOTE: You must all ol, proj4, and vite installed via npm
+This example demonstrates how the `ol` package can be used with webpack.
 
-Go into this github's local directory and start a development server (available at http://localhost:5173):
+Clone the project.
 
-    npm start
+    git clone git@github.com:openlayers/ol-webpack.git
 
-To generate a build ready for production:
+Install the project dependencies.
+
+    cd ol-webpack
+    npm install
+
+Create a bundle for the browser.
 
     npm run build
 
-Then deploy the contents of the `dist` directory to your server. You can also run `npm run serve` to serve the results of the `dist` directory for preview.
+Open `index.html` to see the result.
+
+    open index.html

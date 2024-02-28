@@ -16,7 +16,6 @@ import { click } from "ol/events/condition";
 import { register } from "ol/proj/proj4";
 import proj4 from "proj4";
 import {getDistance} from "ol/sphere"
-import { FALSE, TRUE } from "ol/functions";
 
 register(proj4);
 
@@ -371,7 +370,7 @@ document
 
 
 async function fetchServiceMemberData(){
-   const data = await fetch("./addresses.json").then(res => res.json().then(data => data));
+   const data = await fetch("http://localhost:8000/addresses.json").then(res => res.json().then(data => data));
 
    plotAllPoints(data['service-members']);
 }
