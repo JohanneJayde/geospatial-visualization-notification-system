@@ -6,13 +6,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Using OpenLayers with Webpack</title>
+    <title>Fairchild Wildfire Notification System</title>
     <style>
       @import "node_modules/ol/ol.css";
     </style>
   <link rel="stylesheet" href="./style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap')
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
   </style>
   </head>
   <body>
