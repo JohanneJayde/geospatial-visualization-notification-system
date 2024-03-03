@@ -87,7 +87,6 @@
         ID INT PRIMARY KEY,
         name VARCHAR(255),
         email VARCHAR(255),
-        phone_number VARCHAR(15),
         street VARCHAR(255),
         city VARCHAR(255),
         county VARCHAR(255),
@@ -108,14 +107,14 @@
     // Set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "INSERT IGNORE INTO service_members (ID, name, email, phone_number, street, city, county, state, country, postalcode)
+    $sql = "INSERT IGNORE INTO service_members (ID, name, email, street, city, county, state, country, postalcode)
     VALUES 
-        (333949, 'John Smitth', 'johnsmith@fake.email', '999-111-2293', '2710 1st St', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
-        (153945, 'David Jackson', 'davidjackson@fake.email', '859-334-3290', '575 Bellevue Square', 'Bellevue', 'King', 'Washington', 'United States', '98004'),
-        (653642, 'Hannah Swartz', 'hannahswartz@fake.email', '564-923-1290', '526 5th', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
-        (903030, 'Johnny Nadder', 'johnnynadder@fake.email', '456-329-9010', '200 E Barker St', 'Medical Lake', 'Spokane', 'Washington', 'United States', '99022'),
-        (758345, 'Sarah Ramous', 'sarahramous@fake.email', '490-239-6899', '460 N 6th St', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
-        (136849, 'Jeff Johnson', 'jeffjohnson@fake.email', '232-156-9375', '10201 NE 4th St', 'Bellevue', 'King', 'Washington', 'United States', '98004')";
+        (333949, 'John Smitth', 'johnsmith@fake.email', '2710 1st St', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
+        (153945, 'David Jackson', 'davidjackson@fake.email', '575 Bellevue Square', 'Bellevue', 'King', 'Washington', 'United States', '98004'),
+        (653642, 'Hannah Swartz', 'hannahswartz@fake.email', '526 5th', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
+        (903030, 'Johnny Nadder', 'johnnynadder@fake.email', '200 E Barker St', 'Medical Lake', 'Spokane', 'Washington', 'United States', '99022'),
+        (758345, 'Sarah Ramous', 'sarahramous@fake.email', '460 N 6th St', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
+        (136849, 'Jeff Johnson', 'jeffjohnson@fake.email', '10201 NE 4th St', 'Bellevue', 'King', 'Washington', 'United States', '98004')";
 
     // Execute SQL insert statements
     $conn->exec($sql);
@@ -123,5 +122,3 @@
     } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
     }
-
-?>

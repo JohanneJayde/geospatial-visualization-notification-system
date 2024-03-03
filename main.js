@@ -1,3 +1,5 @@
+
+
 import EsriJSON from "ol/format/EsriJSON.js";
 import Map from "ol/Map.js";
 import VectorSource from "ol/source/Vector.js";
@@ -369,9 +371,10 @@ document
 
 
 async function fetchServiceMemberData(){
-   const data = await fetch("http://localhost:8000/addresses.json").then(res => res.json().then(data => data));
+   const data = await fetch("http://localhost:80/get-service-members.php").then(res => res.json().then(data => data));
 
-   plotAllPoints(data['service-members']);
+   console.log(data);
+   plotAllPoints(data);
 }
 
 
