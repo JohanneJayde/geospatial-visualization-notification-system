@@ -10,7 +10,7 @@
     <style>
       @import "node_modules/ol/ol.css";
     </style>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./map.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
   </style>
