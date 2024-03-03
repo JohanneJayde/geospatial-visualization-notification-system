@@ -33,6 +33,6 @@
         <div id="info"></div>
       </div>
     </div>
-    <script src="./bundle.js"></script>
+    <script src="./map.js"></script>
   </body>
 </html>

@@ -1,4 +1,3 @@
-import "./style.css";
 import EsriJSON from "ol/format/EsriJSON.js";
 import Map from "ol/Map.js";
 import VectorSource from "ol/source/Vector.js";
