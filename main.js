@@ -1,5 +1,3 @@
-
-
 import EsriJSON from "ol/format/EsriJSON.js";
 import Map from "ol/Map.js";
 import VectorSource from "ol/source/Vector.js";
@@ -259,14 +257,36 @@ var calculateDistances = function () {
     wildfireDistances.push({
 
     wildfireName: wildfire.get("IncidentName"),
+    wildfireIrwinID: wildfire.get("IrwinID").substring(1, wildfire.get("IrwinID").length - 1),
+
     distances: getAddressDistances(wildfire)
     });
   }      
   );
 
-  displayServiceMemberDistances(wildfireDistances)
+  console.log(wildfireDistances);
+  saveReport(wildfireDistances);
+  //displayServiceMemberDistances(wildfireDistances)
 
 };
+
+async function saveReport(wildfireDistances){
+      // Awaiting fetch which contains method, 
+      // headers and content-type and body 
+      const response = await fetch("http://localhost:80/update-affected-table.php", { 
+        method: 'PUT', 
+        headers: { 
+          'Content-type': 'application/json'
+        }, 
+        body: JSON.stringify(wildfireDistances) 
+      }); 
+        
+      // Awaiting response.json() 
+      const resData = await response.json(); 
+    
+      // Return response data  
+      console.log(resData); 
+}
 
 var displayServiceMemberDistances = function (wildfireDistances){
 
@@ -330,11 +350,7 @@ var getAddressDistances = function (wildfire){
     }
 
     addressDistance.push( {
-      name: memberData['name'],
-      email: memberData['email'],
-      id: memberData['ID'],
-      phone_number: memberData['phone_number'],
-      display_address: nominatimData['display_name'],
+      id: memberData['id'],
       distance: serviceMemberDistance,
       isWithin10: isWithin10,
       isWithin25: isWithin25,
