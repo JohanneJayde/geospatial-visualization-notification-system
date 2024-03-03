@@ -24,8 +24,11 @@
     } else {
       echo "0 results";
     }
+
+    $conn->close();
+
     echo json_encode($rows);
 
     
-    $conn->close();
+  
 
