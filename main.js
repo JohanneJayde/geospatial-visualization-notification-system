@@ -350,7 +350,7 @@ var getAddressDistances = function (wildfire){
     }
 
     addressDistance.push( {
-      id: memberData['id'],
+      id: Number(memberData['id']),
       distance: serviceMemberDistance,
       isWithin10: isWithin10,
       isWithin25: isWithin25,
@@ -362,7 +362,7 @@ var getAddressDistances = function (wildfire){
 }
 
 function calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates){
-  return getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137;
+  return Math.round((getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137) * 100) / 100;
 }
 
 

@@ -1,11 +1,7 @@
 <?php
  // Database Credientatials
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "CSCD488_490GroupProject";
-    $dbname = "testdb";
-    $conn = new mysqli($servername, $username, $password, $dbname);
+  include "config.php";
 
     $sql = "SELECT * FROM service_members";
     $result = $conn->query($sql);

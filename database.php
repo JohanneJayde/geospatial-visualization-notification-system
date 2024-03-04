@@ -1,10 +1,6 @@
 <?php
-    /*
-    * File for database creation
-    */
-    $servername = "localhost";
-    $username = "root";
-    $password = "CSCD488_490GroupProject";
+
+    include "config.php";
 
     //Create the connection
     $conn = new mysqli($servername, $username, $password);
@@ -59,7 +55,7 @@
 
     //Create fire table
     $sql = "CREATE TABLE IF NOT EXISTS `fires`(
-        `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `id`  VARCHAR(255) PRIMARY KEY,
         `location` VARCHAR(255) NOT NULL
     )";
     if($conn->query($sql) == TRUE){
@@ -73,9 +69,8 @@
     $sql = "CREATE TABLE IF NOT EXISTS `affected`(
         `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         `user_id` INT UNSIGNED NOT NULL,
-        `fire_id` INT UNSIGNED NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (fire_id) REFERENCES fires(id)
+        `fire_id` VARCHAR(255) NOT NULL,        
+        `distance` DECIMAL(8,4) UNSIGNED NOT NULL
     )";
     if($conn->query($sql) == TRUE){
         echo "Table `affected` created successfully\n";
