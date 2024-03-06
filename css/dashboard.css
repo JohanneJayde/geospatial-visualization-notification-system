@@ -1,0 +1,213 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*================================================== */
+/* Header and Containers */
+/*================================================== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 10px 10px 10px;
+    background-color: #596869;
+    color: #D9D9D9;
+    width: 100%;
+    height: 40px;
+}
+
+.container div {
+    display: inline-block;
+    margin-left:-5px;
+
+}
+
+/* Purely for testing purposes*/
+body {
+    background-image: url("https://i.imgur.com/QLJXl2l.png");
+    background-size: 1650px;
+}
+
+/*================================================== */
+/* Icon and Logos Function */
+/*================================================== */
+/* Icon Style */
+.fa-solid {
+    font-family: "Font Awesome 6 Pro", serif;
+    font-size: 1.65rem;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button for Icons */
+span {
+    /*background: transparent;*
+    color: #E6EFE6;
+    border-style: none; */
+    cursor: pointer;
+}
+
+
+
+/*================================================== */
+/* Alignment for Layers/Icon inside of div */
+/*================================================== */
+#layers, #info, #user-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40px;
+    height:40px;
+}
+/* Vertical Line */
+#layers {
+    border-right: 1px solid #485556;
+}
+
+/* Fairchild Logo alignment */
+.logo {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+
+    /*Must have padding due to the two containers on
+    right side */
+    padding-left: 35px;
+}
+
+/*================================================== */
+/* Dropdown Menu for Account, Info, and Layers */
+/*================================================== */
+.dropdown {
+    min-width: 15em;
+}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #3B4242;
+    transition: 0.3s;
+}
+
+/*================================================== */
+/* Map View */
+/*================================================== */
+
+
+
+
+
+
+/*================================================== */
+/* SideBar Icons */
+/*================================================== */
+.sidebar-left {
+    display:grid;
+    gap: 1rem;
+    padding: 10px 8px;
+}
+
+.sidebar-left .fa-solid, .sidebar-right .fa-solid{
+    background-color: #3B4242;
+    color: #E6EFE6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+}
+
+
+.sidebar-right {
+    padding: 90px 8px;
+    float: right;
+}
+
+
+/* Horizontal Line*/
+#zoom-in {
+    border-bottom: 1px solid #1D2222;
+}
+
+
+/*================================================== */
+/* Search Toggle */
+/*================================================== */
+
+.content {
+    background: transparent;
+    width: 40vw;
+    position: relative;
+    float: left;
+}
+
+.search {
+    --size: 30px;
+    border: solid #3B4242;
+    background: #3B4242;
+    align-items: center;
+    overflow: hidden;
+    font-size: 1.25em;
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    padding: 3px;
+
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: width 450ms cubic-bezier(0.18, 0.89, 0.32, 1);
+    }
+}
+
+.search__input {
+    border: 0;
+    padding: .25em 1em;
+    flex-grow: 1;
+    outline: 0;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background: white;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.search__submit {
+    font-size: 17px;
+    margin-right: auto;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+    transition: background 200ms ease-out;
+    width: calc(var(--size) - 10px);
+    height: calc(var(--size) - 10px);
+    color: white;
+}
+
+.search:focus-within {
+    width: 100%;
+
+    .search__input {
+        opacity: 1;
+        z-index: initial;
+        cursor: initial;
+        width: calc(100% - var(--size));
+        margin-left: 50px;
+
+    }
+
+}
+
+

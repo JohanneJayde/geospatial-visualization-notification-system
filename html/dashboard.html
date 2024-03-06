@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <script src="https://kit.fontawesome.com/d595ff8643.js" crossorigin="anonymous"></script>
+    <title>Geospatial</title>
+
+</head>
+<body>
+<header>
+    <div>
+            <span>
+                <i id="user-account" class="fa-solid fa-circle-user icon" title="User Menu"></i>
+            </span>
+    </div>
+
+    <div class="logo">
+        <a href="#">
+            <img class="fafb"
+                 title="Fairchild Air Force Base"
+                 src="images/air%20force_white.png"
+                 width="40px"; height="40px";
+                 alt="logo">
+        </a>
+    </div>
+
+    <div class="container">
+        <div>
+                <span>
+                    <i id="layers" class="fa-solid fa-layer-group icon" title="Layers Menu"></i>
+                </span>
+        </div>
+        <div>
+                <span>
+                    <i id="info" class="fa-solid fa-circle-info icon" title="Info Menu"></i>
+                </span>
+        </div>
+    </div>
+</header>
+
+<div class="sidebar-left" style="float: left;">
+    <div class="content">
+        <div class="search">
+            <input type="text" class="search__input" aria-label="search" placeholder="Search">
+
+            <button class="search__submit" aria-label="submit search">
+                <i class="fas fa-search"></i>  <!---- Change to fa-solid when possible--->
+            </button>
+        </div>
+    </div>
+
+
+    <span>
+            <i id="legend" class="fa-solid fa-list" title="Legend"></i>
+        </span>
+
+    <span>
+            <i id="stats" class="fa-solid fa-calculator" title="Stats" ></i>
+        </span>
+</div>
+
+<div class="sidebar-right">
+
+    <!--- <div class="dropdown">
+        <div class="select">
+            <span class="selected">Street</span>
+            <div class="caret"></div>
+        </div>
+
+        <ul>
+            <li class="active">Street</li>
+            <li>Terrain</li>
+            <li>Satellite</li>
+        </ul>
+
+    </div>--->
+
+
+    <span id="zoom-in" class="fa-solid fa-plus" title="Zoom In"></span>
+
+    <span id="zoom-out" class="fa-solid fa-minus" title="Zoom Out"></span>
+
+    <!---<i id="home" class="fa-solid fa-house" title="Home"></i>--->
+</div>
+
+</body>
+</html>
