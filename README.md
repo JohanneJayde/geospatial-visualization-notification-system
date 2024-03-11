@@ -27,3 +27,4 @@ $username = "root";
 $password = "CSCD488_490GroupProject";
 ```
 
+## [Potential Improvements](https://docs.google.com/document/d/1l9tspndiGUt_pofIWAVSMquhdhagv7UsUj_Y2uNl_UA/edit?usp=sharing)
