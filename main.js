@@ -18,6 +18,10 @@ import {getDistance} from "ol/sphere"
 
 register(proj4);
 
+
+document.addEventListener("DOMContentLoaded", async function () {
+   await fetchServiceMemberData();
+});
 /*
 This is serviceUrl. It contains the live fire data that will be draw using open layers
 */
@@ -125,89 +129,7 @@ const selectedPoint = new Select({
   },
 });
 
- selectedPoint.on("select", function (e) {
-//   var selectCollection = selectedPoint.getFeatures().getArray();
-
-//   if (selectCollection.length === 2) {
-//     const old = selectCollection.shift();
-//     old.setStyle(null);
-//   }
-//   selectCollection[0].setStyle(wildfirePointStyle);
-
-//   document.getElementById("current-wildfire-selected").innerHTML =
-//     "Current Wilfire Selected: " + selectCollection[0].get("IncidentName");
-});
-
 map.addInteraction(selectedPoint);
-
-var keys;
-var pointName = document.getElementById("selected-point-name");
-
-//create function for getting wildfire details from clicking points on maps
-var displayWildfireInfo = function (pixel) {
-  var feature = map.forEachFeatureAtPixel(
-    pixel,
-    function (feature, layer) {
-      return feature;
-    },
-    {
-      layerFilter: function (layer) {
-        return layer.get("name") === "Wildfire Data";
-      },
-    }
-  );
-
-  if (feature) {
-    pointName.innerHTML = "Name: ";
-    keys = feature.getKeys();
-
-    pointName.innerHTML += " " + feature.get("IncidentName");
-    // for (let i = 0; i < keys.length; i++) {
-    //   pointContent.innerHTML += keys[i] + ": " + feature.get(keys[i]) + "<br>";
-    // }
-  }
-};
-
-var displayAddressInfo = function (pixel) {
-  var feature = map.forEachFeatureAtPixel(
-    pixel,
-    function (feature, layer) {
-      return feature;
-    },
-    {
-      layerFilter: function (layer) {
-        return layer.get("name") === "address-points";
-      },
-    }
-  );
-
-  if (feature) {
-    // keys = Object.entries(feature.get("data"));
-
-    // for (let [attribute, value] of keys) {
-    //   pointContent.innerHTML += attribute + ": " + value + "<br>";
-    // }
-
-    pointName.innerHTML = "Name: " + feature.get("nominatimData")["display_name"];
-  }
-};
-
-var nonLayerPointDisplay = function (pixel) {
-  var feature = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
-    return feature;
-  });
-
-  if (!feature) {
-    pointName.innerHTML = "Name: NA";
-  }
-};
-
-map.on("singleclick", function (evt) {
-  var pixel = evt.pixel;
-  nonLayerPointDisplay(pixel);
-  displayWildfireInfo(pixel);
-  displayAddressInfo(pixel);
-});
 
 //create layers where adress points are used
 const vectorLayer = new VectorLayer({
@@ -266,7 +188,6 @@ var calculateDistances = function () {
 
   console.log(wildfireDistances);
   saveReport(wildfireDistances);
-  //displayServiceMemberDistances(wildfireDistances)
 
 };
 
@@ -280,50 +201,6 @@ async function saveReport(wildfireDistances){
         }, 
         body: JSON.stringify(wildfireDistances) 
       }); 
-        
-      // Awaiting response.json() 
-      const resData = await response.json(); 
-    
-      // Return response data  
-      console.log(resData); 
-}
-
-var displayServiceMemberDistances = function (wildfireDistances){
-
-  const distance_container = document.getElementById("distance-report");
-
-  distance_container.innerHTML = "";
-
-  console.log(wildfireDistances);
-
-  for(let i = 0; i < wildfireDistances.length; i++){
-
-    const distance_record = document.createElement("div");
-    const fireName = document.createElement("h3");
-    const distanceList = document.createElement("ul");
-
-    fireName.innerHTML = wildfireDistances[i]['wildfireName'];
-
-    let distances = wildfireDistances[i]['distances'];
-    for(let j = 0; j < distances.length; j++ ){
-      const listItem = document.createElement("li");
-      const serviceMemeberDetail = document.createElement("ul");
-    
-      for(let [key, value] of Object.entries(distances[j])){
-        const detail = document.createElement("li");
-        detail.innerHTML = key + ": " + value;
-        serviceMemeberDetail.appendChild(detail);
-      }
-      
-      listItem.appendChild(serviceMemeberDetail);
-      distanceList.appendChild(listItem);
-
-    }
-    distance_record.append(fireName,distanceList);
-    distance_container.append(distance_record);
-
-  }
-
 }
 
 var getAddressDistances = function (wildfire){
@@ -336,10 +213,7 @@ var getAddressDistances = function (wildfire){
   serviceMembers.forEach((serviceMember) => {
 
     const memberData = serviceMember.get('memberData');
-    const nominatimData = serviceMember.get('nominatimData');
-
     const serviceMemberCoordinates = getFeatureLonLat(serviceMember);
-
     const serviceMemberDistance = calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates);
 
     let isWithin10 = serviceMemberDistance < 10 ? true : false;
@@ -364,7 +238,6 @@ var getAddressDistances = function (wildfire){
 function calculateServiceMemberDistance(wildFireCoordinates, serviceMemberCoordinates){
   return Math.round((getDistance(wildFireCoordinates, serviceMemberCoordinates) * 0.00062137) * 100) / 100;
 }
-
 
 function getMapLayer(layerName){
   return map
@@ -448,7 +321,7 @@ function wait(milliseconds){
   });
 }
 
-document.getElementById("plot-button").addEventListener("click", ()=>{fetchServiceMemberData();});
+//document.getElementById("plot-button").addEventListener("click", ()=>{fetchServiceMemberData();});
 
 const info = document.getElementById('info');
 
