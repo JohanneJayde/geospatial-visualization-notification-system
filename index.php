@@ -18,21 +18,11 @@
   <body>
     <nav>
       <h1>Fairchild Airforce Base Wildfire Notification System Demo</h1>
+      <button id="generate-report">Generate Report</button>
     </nav>
-    <div id="content">
-      <div id="side-bar">
-        <div id="user-info">
-          <button id="plot-button">Plot Service Members</button>
-          <button id="get-distance">Get Distances</button>
-          <h3 id="selected-point-name">Name:</h3>
-
-        </div>
-        <div id="distance-report"></div>
-      </div>
       <div id="map">
         <div id="info"></div>
       </div>
-    </div>
     <script src="./map.js"></script>
   </body>
 </html>

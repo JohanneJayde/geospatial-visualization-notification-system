@@ -18,7 +18,6 @@ import {getDistance} from "ol/sphere"
 
 register(proj4);
 
-
 document.addEventListener("DOMContentLoaded", async function () {
    await fetchServiceMemberData();
 });
@@ -255,7 +254,7 @@ function getFeatureLonLat(feature){
 }
 
 document
-  .getElementById("get-distance")
+  .getElementById("generate-report")
   .addEventListener("click", calculateDistances);
 
 

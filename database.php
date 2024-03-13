@@ -12,7 +12,6 @@
     //Create the database
     $sql = "CREATE DATABASE IF NOT EXISTS testdb";
     if($conn->query($sql)){
-        echo "Database created successfully\n";
     } else{
         echo "Error creating database: " . $conn->error;
     }
@@ -36,7 +35,6 @@
         `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )";
     if($conn->query($sql) == TRUE){
-        echo "Table `users` created successfully\n";
     } else{
         echo "Error creating table: " . $conn->error;
     }
@@ -48,7 +46,6 @@
         FOREIGN KEY (user_id) REFERENCES users(id) 
     )";
     if($conn->query($sql) == TRUE){
-        echo "Table `admin` created successfully\n";
     } else{
         echo "Error creating table: " . $conn->error;
     }
@@ -59,7 +56,6 @@
         `location` VARCHAR(255) NOT NULL
     )";
     if($conn->query($sql) == TRUE){
-        echo "Table `fires` created successfully\n";
     } else{
         echo "Error creating table: " . $conn->error;
     }
@@ -73,7 +69,6 @@
         `distance` DECIMAL(8,4) UNSIGNED NOT NULL
     )";
     if($conn->query($sql) == TRUE){
-        echo "Table `affected` created successfully\n";
     } else{
         echo "Error creating table: " . $conn->error;
     }
@@ -91,7 +86,6 @@
     )";
 
     if($conn->query($sql) == TRUE){
-    echo "Table `service_members` created successfully\n";
     } else{
     echo "Error creating table: " . $conn->error;
     }
@@ -113,7 +107,6 @@
 
     // Execute SQL insert statements
     $conn->exec($sql);
-    echo "Records inserted successfully";
     } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
     }
