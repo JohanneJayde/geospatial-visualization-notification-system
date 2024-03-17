@@ -184,7 +184,7 @@
     <div id="map">
         <div id="info"></div>
       </div>
-    <script src="./map.js"></script>
+    <script src="./javascript/map.js"></script>
 
     <!-- Creating the stats
     <div class="stats">
