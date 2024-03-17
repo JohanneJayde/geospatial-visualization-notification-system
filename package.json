@@ -1,16 +1,9 @@
 {
-    "name": "ol-webpack",
-    "version": "1.0.0",
-    "description": "Example using OpenLayers with Webpack",
-    "scripts": {
-        "build": "webpack --config webpack.config.js"
-    },
-    "devDependencies": {
-        "webpack": "^5.90.3",
-        "webpack-cli": "^5.0.1"
-    },
-    "dependencies": {
-        "ol": "latest",
-        "proj4": "^2.10.0"
-    }
+  "devDependencies": {
+    "webpack": "^5.90.3"
+  },
+  "dependencies": {
+    "ol": "^9.0.0",
+    "proj4": "^2.10.0"
+  }
 }
