@@ -1,0 +1,429 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', serif;
+    background: antiquewhite;
+    height: 100vh;
+}
+
+html {
+   height: 100%;
+}
+
+
+
+/*================================================== */
+/* Header and Containers */
+/*================================================== */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 10px 10px 10px;
+    background-color: #596869;
+    color: #D9D9D9;
+    width: 100%;
+    height: 40px;
+}
+
+
+
+.container div {
+    display: inline-block;
+    margin-left:-5px;
+
+}
+
+/* Purely for testing purposes*/
+body {
+    background-image: url("https://i.imgur.com/QLJXl2l.png");
+    background-size: 1650px;
+}
+
+
+/*================================================== */
+/* Icon and Logos Function */
+/*================================================== */
+/* Icon Style */
+.fa-solid {
+    font-family: "Font Awesome 6 Pro", serif;
+    font-size: 1.65rem;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button for Icons */
+span {
+    /*background: transparent;*
+    color: #E6EFE6;
+    border-style: none; */
+    cursor: pointer;
+}
+
+
+
+/*================================================== */
+/* Alignment for Layers/Icon inside of div */
+/*================================================== */
+#layers, #info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40px;
+    height:40px;
+}
+/* Vertical Line */
+#layers {
+    border-right: 1px solid #485556;
+}
+
+/* Fairchild Logo alignment */
+.logo {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+
+    /*Must have padding due to the two containers on
+    right side */
+    padding-left: 43px;
+}
+
+/*================================================== */
+/* Exit */
+/*================================================== */
+.exit {
+    float: right;
+    padding: 3px 5px;
+}
+
+.exit .fa-solid {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+/*================================================== */
+/* Info */
+/*================================================== */
+.sub-info-wrap {
+    position: absolute;
+    top: 30px;
+    width: 350px;
+    right: -10px;
+    margin: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    z-index: 1;
+    box-shadow: -5px 5px 10px rgba(11, 13, 13, 0.5);
+
+}
+
+.sub-info-wrap.open-info {
+    max-height: 600px;
+}
+
+.sub-info {
+    background: white;
+    padding: 0;
+}
+
+.sub-info h3 {
+    font-weight: 500;
+    margin: 10px 0 -5px 0;
+    font-size: 20px;
+}
+
+.sub-info header {
+    padding: 0;
+    text-align: center;
+    background-color: #3B4242;
+}
+
+.about {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.sub-info p {
+    margin-top: -20px;
+}
+
+.infotext {
+    padding: 20px;
+    font-size: 15px;
+    text-align: left;
+    color: black;
+
+}
+/*
+.sub-info p {
+    margin-bottom: 1px;
+
+}*/
+
+
+
+/*================================================== */
+/* Account and Toggle */
+/*================================================== */
+
+/* Icon Style */
+.user-pic {
+    width: 35px;
+    cursor: pointer;
+    padding-top: 5px;
+}
+
+.sub-menu-wrap {
+    position: absolute;
+    top: 30px;
+    width: 300px;
+    left: -10px;
+    margin: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    box-shadow:5px 5px 10px rgba(11, 13, 13, 0.5);
+    z-index: 1;
+}
+
+.sub-menu-wrap.open-menu {
+    max-height: 600px;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.sub-menu {
+    background: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-info h3 {
+    font-weight: 500;
+    margin: 10px 0 -5px 0;
+    font-size: 20px;
+}
+
+.user-info img {
+    width: 65px;
+}
+
+.sub-menu-link {
+    text-decoration: none;
+    padding: 15px;
+}
+
+.links {
+    display: inline-flex;
+}
+
+.sub-menu-link {
+    text-decoration: none;
+}
+
+.sub-menu-link p {
+    margin: 0;
+    font-size: 13px;
+    color: #327DEE;
+}
+
+.sub-menu-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin: 12px 15px;
+    width: 80%;
+    height: 45px;
+}
+
+.sub-menu-button p {
+    width: 100%;
+    color: white;
+    font-size: 14px;
+}
+
+.sub-menu-button i {
+    width: 40px;
+    padding: 0 20px;
+    font-size: 23px;
+    color: white;
+}
+
+#save {
+    background-color: #327DEE;
+    border-radius: 10px;
+}
+
+#edit {
+    background-color: #E7AE6B;
+    border-radius: 10px;
+
+}
+
+#csv {
+    background-color: #966ac2;
+    border-radius: 10px;
+}
+
+#edit {
+    background-color: #E7AE6B;
+    border-radius: 10px;
+}
+
+/*93D97EFF*/
+#email {
+    background-color: #d960a4;
+    border-radius: 10px;
+}
+
+.tracker {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.text {
+    font-size: 12px;
+    text-align: left;
+}
+
+.text1 {
+    color: black;
+
+}
+
+#under {
+    content: "";
+    margin: 2em;
+    display: block;
+    font-size: 24%;
+}
+
+
+/*================================================== */
+/* SideBar Icons */
+/*================================================== */
+.sidebar-left {
+    display:grid;
+    gap: 1rem;
+    padding: 10px 8px;
+}
+
+.sidebar-left .fa-solid, .sidebar-right .fa-solid{
+    background-color: #3B4242;
+    color: #E6EFE6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+}
+
+
+.sidebar-right {
+    padding: 90px 8px;
+    float: right;
+}
+
+
+
+
+/*================================================== */
+/* Search Toggle */
+/*================================================== */
+
+.content {
+    background: transparent;
+    width: 40vw;
+    position: relative;
+    float: left;
+}
+
+.search {
+    --size: 30px;
+    border: solid #3B4242;
+    background: #3B4242;
+    align-items: center;
+    overflow: hidden;
+    font-size: 1.25em;
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    padding: 3px;
+
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: width 450ms cubic-bezier(0.18, 0.89, 0.32, 1);
+    }
+}
+
+.search__input {
+    border: 0;
+    padding: .25em 1em;
+    flex-grow: 1;
+    outline: 0;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background: white;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.search__submit {
+    font-size: 17px;
+    margin-right: auto;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+    transition: background 200ms ease-out;
+    width: calc(var(--size) - 10px);
+    height: calc(var(--size) - 10px);
+    translate: 0 -1.5px;
+    color: white;
+}
+
+.search:focus-within {
+    width: 100%;
+
+    .search__input {
+        opacity: 1;
+        z-index: initial;
+        cursor: initial;
+        width: calc(100% - var(--size));
+        margin-left: 50px;
+
+    }
+
+}
+
+
+
+/*================================================== */
+/* Stats */
+/*================================================== */
+
+
