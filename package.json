@@ -1,9 +1,16 @@
 {
+  "name": "geospatical-visualization-tool",
+  "version": "1.0.0",
+  "description": "Geospatical Visualization Tool for Fairchild Airforce Base",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
   "devDependencies": {
-    "webpack": "^5.90.3"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "ol": "^9.0.0",
+    "ol": "latest",
     "proj4": "^2.10.0"
   }
 }

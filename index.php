@@ -21,7 +21,6 @@
 
     <div class="header">
         <nav>
-        <button id="generate-report">Generate Report</button>
 
             <div style="padding: 5px">
                 <img src="../images/user.png" class="user-pic" onclick="toggleMenu()">
@@ -161,13 +160,13 @@
 
 
 
-    <div class="sidebar-left" style="float: left;">
+     <!-- <div class="sidebar-left" style="float: left;">
         <div class="content">
             <div class="search">
                 <input type="text" class="search__input" aria-label="search" placeholder="Search">
 
                 <button class="search__submit" aria-label="submit search">
-                    <i class="fa fa-search"></i>  <!---- Change to fa-solid when possible--->
+                    <i class="fa fa-search"></i> 
                 </button>
             </div>
         </div>
@@ -179,7 +178,7 @@
         <div>
             <i id="stats" class="fa-solid fa-calculator" title="Stats" ></i>
         </div>
-    </div>
+    </div> -->
 
     <div id="map">
         <div id="info"></div>
