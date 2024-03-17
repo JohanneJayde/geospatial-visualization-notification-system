@@ -1,14 +1,22 @@
 # Geospatial Visualization Notification System
 ### By Randy Pipkins, Mikayla Stewart, Johanne McClenahan, and Ian Goss
 
+### Developing the site
+1. clone repo
+2. `Node.js`, `PHP`, `npm` need to be installed
+3. npm packages: `ol`, `proj4`, `webpack`
+4. Software: `Laragon`
+5. For Laragon, update default path to cloned repo root directory
+6. Everytime you make a change to `dashboard.js`, you must do `npm run build`. This updates the `map.js` which is a webpack so it can be run via localhost
+7. Click `Run all` on Laragon and it should deploy development site on localhost
+8. Monitoring the SQL server requires opening up Laragon MySQL and entering the root password found at the end
 
 ### Running the Application
-1. `Node.js`, `PHP`, and `NPM` need to be installed on the local machine
-2. The following npm packages must be installed: `ol`, `proj4`, `webpack`
-3. `Laragon` must be installed
-4. After all have been installed, from the root for the repository, run `npm run build`, this should create a webpack that will be used when launching the site.
-5. From the Laragon program, click "Run All" and it should deploy the production site.
-6. Click `Web` to view the website from `localhost`
+1. `Laragon` must be installed
+2. After all have been installed, from the root for the repository, run `npm run build`, this should create a webpack that will be used when launching the site.
+3. Make sure to change laragon's www root to the root of the repo.
+4. From the Laragon program, click "Run All" and it should deploy the development site.
+5.  Click `Web` to view the website from `localhost`.
 
 # Info regarding the Server and Database
 
