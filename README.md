@@ -12,8 +12,8 @@
 8. Monitoring the SQL server requires opening up Laragon MySQL and entering the root password found at the end
 
 ### Running the Application
-1. `Laragon` must be installed
-2. After all have been installed, from the root for the repository, run `npm run build`, this should create a webpack that will be used when launching the site.
+1. `Laragon` must be installed.
+2. After all have been installed, from the root for the repository.
 3. Make sure to change laragon's www root to the root of the repo.
 4. From the Laragon program, click "Run All" and it should deploy the development site.
 5.  Click `Web` to view the website from `localhost`.
