@@ -1,10 +1,22 @@
+<?php
+  include('config.php');
+  include("database.php"); 
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
     <script src="https://kit.fontawesome.com/d595ff8643.js" crossorigin="anonymous"></script>
-    <title>Geospatial</title>
 
+    <meta charset="utf-8">
+    <title>Fairchild Wildfire Notification System</title>
+    <style>
+      @import "node_modules/ol/ol.css";
+    </style>
+    <link rel="stylesheet" href="./map.css">
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+  </style>
 </head>
 <body>
 
@@ -168,7 +180,6 @@
             <i id="stats" class="fa-solid fa-calculator" title="Stats" ></i>
         </div>
     </div>
-
 
 
 
