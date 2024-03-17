@@ -193,7 +193,7 @@ var calculateDistances = function () {
 async function saveReport(wildfireDistances){
       // Awaiting fetch which contains method, 
       // headers and content-type and body 
-      const response = await fetch("http://localhost:80/update-affected-table.php", { 
+      const response = await fetch("http://localhost:80/php/update-affected-table.php", { 
         method: 'PUT', 
         headers: { 
           'Content-type': 'application/json'
@@ -259,7 +259,7 @@ document
 
 
 async function fetchServiceMemberData(){
-   const data = await fetch("http://localhost:80/get-service-members.php").then(res => res.json().then(data => data));
+   const data = await fetch("http://localhost:80/php/get-service-members.php").then(res => res.json().then(data => data));
 
    console.log(data);
    plotAllPoints(data);
