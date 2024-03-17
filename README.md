@@ -2,7 +2,7 @@
 ### By Randy Pipkins, Mikayla Stewart, Johanne McClenahan, and Ian Goss
 
 ### Developing the site
-1. clone repo
+1. Clone repo
 2. `Node.js`, `PHP`, `npm` need to be installed
 3. npm packages: `ol`, `proj4`, `webpack`
 4. Software: `Laragon`
