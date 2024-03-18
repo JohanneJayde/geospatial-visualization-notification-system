@@ -8,12 +8,9 @@ body{
     background-color: #3274d6;
 }
 
-
 th{
     padding: 1em 0em;
 }
-
-
 
 .csv-nav{
     display: flex;

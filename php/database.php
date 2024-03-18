@@ -63,11 +63,11 @@
     //Create affected table
     //This table will store those service members who are within an affected are of the fire
     $sql = "CREATE TABLE IF NOT EXISTS `affected`(
-        `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         `user_id` INT UNSIGNED NOT NULL,
         `fire_id` VARCHAR(255) NOT NULL, 
         `fire_name` VARCHAR(255) NOT NULL,       
-        `distance` DECIMAL(8,4) UNSIGNED NOT NULL
+        `distance` DECIMAL(8,4) UNSIGNED NOT NULL,
+        PRIMARY KEY(`user_id`, `fire_id`)
     )";
     if($conn->query($sql) == TRUE){
     } else{
@@ -75,7 +75,7 @@
     }
 
     $sql = "CREATE TABLE IF NOT EXISTS `service_members` (
-        ID INT PRIMARY KEY,
+        ID INT PRIMARY KEY NOT NULl,
         name VARCHAR(255),
         email VARCHAR(255),
         street VARCHAR(255),

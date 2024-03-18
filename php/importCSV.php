@@ -40,18 +40,18 @@ if(isset($_POST['importSubmit'])){
                 $postalcode = $line[8];
 
                 // Check whether member already exists in the database with the same email
-                $prevQuery = "SELECT id FROM service_members WHERE email = '".$line[1]."'";
+                $prevQuery = "SELECT id FROM service_members WHERE email = '".$line[2]."'";
                 $prevResult = $conn->query($prevQuery);
 
                 if($prevResult->num_rows > 0){
                     // Update member data in the database
-                    $conn->query("UPDATE service_members SET name = '" . $name . "', 
+                    $conn->query("UPDATE service_members name = '" . $name . "', 
                         street = '" . $street . "', city = '" . $city . "', county = '" . $county ."', state = '" . $state . "',
                         country = '" . $country . "', postalcode = '" . $postalcode . "', email = '". $email ."' WHERE id = '" . $id . "'");
                 }else{
                     // Insert member data in the database
-                    $conn->query("INSERT INTO service_members (name, email, street, city, county, state, country, postalcode)
-                        VALUES ('" . $name . "', '" . $email . "', '" . $street . "', '" . $city . "', '" . $country . "', 
+                    $conn->query("INSERT INTO service_members (id, name, email, street, city, county, state, country, postalcode)
+                        VALUES ('" . $id . "', '" . $name . "', '" . $email . "', '" . $street . "', '" . $city . "', '" . $country . "', 
                         '" . $state . "', '" . $country . "', '" . $postalcode . "')");
                 }
             }

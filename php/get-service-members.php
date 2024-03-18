@@ -2,8 +2,10 @@
  // Database Credientatials
 
   include "config.php";
+  
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  $sql = "SELECT * FROM service_members";
 
-    $sql = "SELECT * FROM service_members";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
