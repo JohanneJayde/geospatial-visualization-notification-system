@@ -19,14 +19,18 @@ and modified to fit our project
 <div class="login">
   <h1>Login</h1>
   <form action="php/login.php" method="post" autocomplete="off">
-    <label for="email">
+    <div class="input-field">    
+      <label for="email">
       <i class="fas fa-envelope"></i>
-    </label>
-    <input type="email" name="email" placeholder="Email" id="email" required>
-    <label for="password">
-      <i class="fas fa-lock"></i>
-    </label>
-    <input type="password" name="password" placeholder="Password" id="password" required>
+      </label>
+      <input type="email" name="email" placeholder="Email" id="email" required>
+    </div>
+    <div class="input-field">    
+      <label for="password">
+        <i class="fas fa-lock"></i>
+      </label>
+      <input type="password" name="password" placeholder="Password" id="password" required>
+    </div>
 
     <input type="submit" value="Login">
   </form>
