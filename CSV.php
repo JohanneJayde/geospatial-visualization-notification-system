@@ -42,67 +42,79 @@ if(!empty($_GET['status'])){
         <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
     </div>
 <?php } ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="../css/report.css">
 
-<div class="row">
-    <!-- Import & Export link -->
-    <div class="col-md-12 head">
-        <div class="float-right">
-            <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
-            <a href="php/exportCSV.php" class="btn btn-primary"><i class="exp"></i> Export</a>
-        </div>
-    </div>
-    <!-- CSV file upload form -->
-    <div class="col-md-12" id="importFrm" style="display: none;">
-        <form action="php/importCSV.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" />
-            <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
-        </form>
-    </div>
+    <meta charset="utf-8">
+    <title>Fairchild Wildfire Notification System</title>
 
-    <!-- Data list table -->
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>County</th>
-            <th>State</th>
-            <th>Country</th>
-            <th>Postal Code</th>            
-            <th>Fire ID</th>
-            <th>Distance</th>
+    </head>
+    <body>
+        <div class="row">
+            <button onclick= "location.href = 'dashboard.html'">Return to Dashboard</button
+            <!-- Import & Export link -->
+            <div class="col-md-12 head">
+                <div class="float-right">
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
+                    <a href="php/exportCSV.php" class="btn btn-primary"><i class="exp"></i> Export</a>
+                </div>
+            </div>
+            <!-- CSV file upload form -->
+            <div class="col-md-12" id="importFrm" style="display: none;">
+                <form action="php/importCSV.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" />
+                    <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                </form>
+            </div>
 
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        // Get member rows
-        $sql = "SELECT * FROM service_members join affected on (service_members.ID = affected.user_id)";
-        $result = $conn->query($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                ?>
+            <!-- Data list table -->
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
                 <tr>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['street']; ?></td>
-                    <td><?php echo $row['city']; ?></td>
-                    <td><?php echo $row['county']; ?></td>
-                    <td><?php echo $row['state']; ?></td>
-                    <td><?php echo $row['country']; ?></td>
-                    <td><?php echo $row['postalcode']; ?></td>
-                    <td><?php echo $row['fire_id']; ?></td>
-                    <td><?php echo $row['distance']; ?></td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>County</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Postal Code</th>            
+                    <th>Fire ID</th>
+                    <th>Distance</th>
 
                 </tr>
-            <?php } }else{ ?>
-            <tr><td colspan="5">No member(s) found...</td></tr>
-        <?php } ?>
-        </tbody>
-    </table>
-</div>
+                </thead>
+                <tbody>
+                <?php
+                // Get member rows
+                $sql = "SELECT * FROM service_members join affected on (service_members.ID = affected.user_id)";
+                $result = $conn->query($sql);
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_assoc()){
+                        ?>
+                        <tr>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['street']; ?></td>
+                            <td><?php echo $row['city']; ?></td>
+                            <td><?php echo $row['county']; ?></td>
+                            <td><?php echo $row['state']; ?></td>
+                            <td><?php echo $row['country']; ?></td>
+                            <td><?php echo $row['postalcode']; ?></td>
+                            <td><?php echo $row['fire_id']; ?></td>
+                            <td><?php echo $row['distance']; ?></td>
+
+                        </tr>
+                    <?php } }else{ ?>
+                    <tr><td colspan="5">No member(s) found...</td></tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
 
 <!-- Show/hide CSV upload form -->
 <script>
