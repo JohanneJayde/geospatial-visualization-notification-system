@@ -65,7 +65,8 @@
     $sql = "CREATE TABLE IF NOT EXISTS `affected`(
         `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         `user_id` INT UNSIGNED NOT NULL,
-        `fire_id` VARCHAR(255) NOT NULL,        
+        `fire_id` VARCHAR(255) NOT NULL, 
+        `fire_name` VARCHAR(255) NOT NULL,       
         `distance` DECIMAL(8,4) UNSIGNED NOT NULL
     )";
     if($conn->query($sql) == TRUE){

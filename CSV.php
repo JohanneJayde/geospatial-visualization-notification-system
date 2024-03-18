@@ -36,12 +36,7 @@ if(!empty($_GET['status'])){
 }
 ?>
 
-<!-- Display status message -->
-<?php if(!empty($statusMsg)){ ?>
-    <div class="col-xs-12">
-        <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
-    </div>
-<?php } ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,7 +47,7 @@ if(!empty($_GET['status'])){
 
     </head>
     <body>
-        <div class="row">
+            <div class="csv-nav">
             <button onclick= "location.href = 'dashboard.html'">Return to Dashboard</button
             <!-- Import & Export link -->
             <div class="col-md-12 head">
@@ -69,8 +64,16 @@ if(!empty($_GET['status'])){
                 </form>
             </div>
 
+                        <!-- Display status message -->
+            <?php if(!empty($statusMsg)){ ?>
+                <div class="col-xs-12">
+                    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+                </div>
+            <?php } ?>
+
+            </div>
             <!-- Data list table -->
-            <table class="table table-striped table-bordered">
+            <table>
                 <thead class="thead-dark">
                 <tr>
                     <th>Name</th>
@@ -81,7 +84,7 @@ if(!empty($_GET['status'])){
                     <th>State</th>
                     <th>Country</th>
                     <th>Postal Code</th>            
-                    <th>Fire ID</th>
+                    <th>Fire Name</th>
                     <th>Distance</th>
 
                 </tr>
@@ -103,7 +106,7 @@ if(!empty($_GET['status'])){
                             <td><?php echo $row['state']; ?></td>
                             <td><?php echo $row['country']; ?></td>
                             <td><?php echo $row['postalcode']; ?></td>
-                            <td><?php echo $row['fire_id']; ?></td>
+                            <td><?php echo $row['fire_name']; ?></td>
                             <td><?php echo $row['distance']; ?></td>
 
                         </tr>
@@ -112,7 +115,6 @@ if(!empty($_GET['status'])){
                 <?php } ?>
                 </tbody>
             </table>
-        </div>
     </body>
 </html>
 

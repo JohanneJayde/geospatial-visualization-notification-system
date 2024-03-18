@@ -12,8 +12,8 @@ $conn->query($query);
 
 for ($i = 0; $i < count($data); $i++) {
     for ($j = 0; $j < count($data[$i]["distances"]); $j++){
-        $query = "INSERT INTO affected (user_id, fire_id, distance)
-        VALUES ({$data[$i]["distances"][$j]["id"]}, '{$data[$i]["wildfireIrwinID"]}', {$data[$i]["distances"][$j]["distance"]})";
+        $query = "INSERT INTO affected (user_id, fire_id, fire_name, distance)
+        VALUES ({$data[$i]["distances"][$j]["id"]}, '{$data[$i]["wildfireIrwinID"]}', '{$data[$i]["wildfireName"]}',  {$data[$i]["distances"][$j]["distance"]})";
         $result = $conn->query($query);
 
     };
