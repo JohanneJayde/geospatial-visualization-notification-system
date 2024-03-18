@@ -42,7 +42,7 @@
                         <a href="#" class="sub-menu-link">
                             <p>Account</p>
                         </a>
-                        <a href="#" class="sub-menu-link">
+                        <a href="logout.php" class="sub-menu-link">
                             <p>Logout</p>
                         </a>
                     </div>
@@ -67,7 +67,7 @@
 
                     <a>
                         <div class="button" id="csv">
-                            <a class="sub-menu-button">
+                            <a class="sub-menu-button" href="CSV.php">
                                 <i class="fa-solid fa-file-import"></i>
                                 <p>Import/Export CSV</p>
                             </a>
