@@ -27,7 +27,8 @@ tr{
 }
 
 td{
-    padding: 2em;
+    padding: 2em 1em;
+    text-align: center;
 }
 
 table{
