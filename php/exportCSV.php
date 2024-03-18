@@ -26,7 +26,7 @@ $result = $conn->query("SELECT * FROM service_members ORDER BY id DESC");
 if ($result->num_rows > 0) {
     // Output each row of the data, format line as csv and write to file pointer
     while ($row = $result->fetch_assoc()) {
-        $lineData = array($row['id'], $row['name'], $row['email'], $row['street'], $row['city'], $row['county'], $row['state'],
+        $lineData = array($row['ID'], $row['name'], $row['email'], $row['street'], $row['city'], $row['county'], $row['state'],
             $row['country'], $row['postalcode']);
         fputcsv($f, $lineData, $delimiter);
     }
