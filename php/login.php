@@ -35,7 +35,7 @@ if($stmt = $conn->prepare('SELECT id, password FROM users WHERE email = ?')) {
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['email'];
             $_SESSION['id'] = $id;
-            header('Location: ../dashboard.php');
+            header('Location: ../dashboard.html');
         } else {
             //Incorrect password
             echo 'Incorrect password';

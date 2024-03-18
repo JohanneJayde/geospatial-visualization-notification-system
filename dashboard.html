@@ -19,7 +19,7 @@
         <nav>
 
             <div style="padding: 5px">
-                <img src="../images/user.png" class="user-pic" onclick="toggleMenu()">
+                <img src="../images/user.png" id="user-btn" class="user-pic" onclick="toggleMenu()">
             </div>
 
             <div class="sub-menu-wrap" id="subMenu">
@@ -83,7 +83,9 @@
                     <p class="tracker text1">Fire Tracker</p>
                     <hr>
                     <br id="under">
-                    <p class="text text1">You're currently not following any fires.</p>
+                    <div id="fires-tracked">
+
+                    </div>
                 </div>
             </div>
 

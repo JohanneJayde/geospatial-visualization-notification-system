@@ -130,6 +130,30 @@ const selectedPoint = new Select({
 
 map.addInteraction(selectedPoint);
 
+document.getElementById("user-btn").addEventListener("click", ()=>{
+  getSelectedWildFires();
+})
+
+var trackedFires  = [];
+
+
+function getSelectedWildFires(){
+  var tracker = document.getElementById("fires-tracked");
+
+
+  var list = document.createElement("ul");
+
+  selectedPoint.getFeatures().forEach((feature) => {
+        var message = document.createElement("li");
+        message.innerHTML = feature.get("IncidentName");
+        list.appendChild(message);
+      }
+
+  );
+  tracker.replaceChildren(list);
+
+}
+
 //create layers where adress points are used
 const vectorLayer = new VectorLayer({
   name: "address-points",
@@ -139,34 +163,6 @@ vectorLayer.setSource(new VectorSource({}));
 
 map.addLayer(vectorLayer);
 
-var addAddressPoint = async function (event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const asString = new URLSearchParams(formData).toString();
-
-  const data = await fetch(
-    "https://nominatim.openstreetmap.org/search?" +
-      asString +
-      "&format=json&limit=1"
-  )
-    .then((response) => response.json())
-    .then((json) => {
-      return json;
-    });
-
-  if (data.length === 0) {
-    return;
-  }
-
-  let plottedPoints = getMapLayer("address-points");
-
-  plottedPoints.getSource().addFeature(
-    new Feature({
-      geometry: new Point(fromLonLat([data[0].lon, data[0].lat])),
-      data: data[0],
-    })
-  );
-};
 
 var calculateDistances = function () {
 
