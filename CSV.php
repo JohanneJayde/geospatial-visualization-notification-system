@@ -48,14 +48,10 @@ if(!empty($_GET['status'])){
     </head>
     <body>
             <div class="csv-nav">
-            <button onclick= "location.href = 'dashboard.html'">Return to Dashboard</button
-            <!-- Import & Export link -->
-            <div class="col-md-12 head">
-                <div class="float-right">
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
-                    <a href="php/exportCSV.php" class="btn btn-primary"><i class="exp"></i> Export</a>
-                </div>
-            </div>
+            <button onclick= "location.href = 'dashboard.html'">Return to Dashboard</button>
+            <button onclick="formToggle('importFrm')">Import</button>
+            <button onclick="location.href = 'php/exportCSV.php'">Export</button>
+ 
             <!-- CSV file upload form -->
             <div class="col-md-12" id="importFrm" style="display: none;">
                 <form action="php/importCSV.php" method="post" enctype="multipart/form-data">
@@ -110,10 +106,10 @@ if(!empty($_GET['status'])){
                             <td><?php echo $row['fire_name']; ?></td>
                             <td><?php echo $row['distance']; ?></td>
                             <td><?php switch (true) {
-                                        case ($row['distance'] < 25):
+                                        case ($row['distance'] < 10):
                                             echo "Danger";
                                             break;
-                                        case ($row['distance'] < 50):
+                                        case ($row['distance'] < 25):
                                             echo "Warning";
                                             break;
                                         default:
