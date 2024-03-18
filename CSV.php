@@ -70,13 +70,16 @@ if(!empty($_GET['status'])){
             <th>County</th>
             <th>State</th>
             <th>Country</th>
-            <th>Postal Code</th>
+            <th>Postal Code</th>            
+            <th>Fire ID</th>
+            <th>Distance</th>
+
         </tr>
         </thead>
         <tbody>
         <?php
         // Get member rows
-        $sql = "SELECT * FROM service_members WHERE 1=1";
+        $sql = "SELECT * FROM service_members join affected on (service_members.ID = affected.user_id)";
         $result = $conn->query($sql);
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
@@ -90,6 +93,9 @@ if(!empty($_GET['status'])){
                     <td><?php echo $row['state']; ?></td>
                     <td><?php echo $row['country']; ?></td>
                     <td><?php echo $row['postalcode']; ?></td>
+                    <td><?php echo $row['fire_id']; ?></td>
+                    <td><?php echo $row['distance']; ?></td>
+
                 </tr>
             <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>
