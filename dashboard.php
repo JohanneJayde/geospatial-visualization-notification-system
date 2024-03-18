@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +35,7 @@
                 <div class="sub-menu">
                     <div class="user-info">
                         <img src="../images/user.png" class="user-pic">
-                        <h3 class="text1">Admin</h3>
+                        <h3 class="text1"><?php echo $_SESSION['name']  ?></h3>
                     </div>
 
                     <div class="links">

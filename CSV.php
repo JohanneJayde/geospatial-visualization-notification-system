@@ -48,7 +48,7 @@ if(!empty($_GET['status'])){
     </head>
     <body>
             <div class="csv-nav">
-            <button onclick= "location.href = 'dashboard.html'">Return to Dashboard</button>
+            <button onclick= "location.href = 'dashboard.php'">Return to Dashboard</button>
             <button onclick="formToggle('importFrm')">Import</button>
             <button onclick="location.href = 'php/exportCSV.php'">Export</button>
  
@@ -56,7 +56,7 @@ if(!empty($_GET['status'])){
             <div class="col-md-12" id="importFrm" style="display: none;">
                 <form action="php/importCSV.php" method="post" enctype="multipart/form-data">
                     <input type="file" name="file" />
-                    <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                    <button type="submit" class="btn btn-primary" name="importSubmit">Import</button>
                 </form>
             </div>
 
