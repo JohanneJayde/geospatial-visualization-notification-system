@@ -48,7 +48,7 @@ if($stmt = $conn->prepare('SELECT id, password FROM users WHERE email = ?')) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $stmt->bind_param('ss', $_POST['email'], $password);
             $stmt->execute();
-            header('Location: index.html');
+            header('Location: index.php');
             exit;
         } else {
             //SQL error
