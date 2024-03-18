@@ -45,13 +45,13 @@ if(isset($_POST['importSubmit'])){
 
                 if($prevResult->num_rows > 0){
                     // Update member data in the database
-                    $conn->query("UPDATE service_members name = '" . $name . "', 
+                    $conn->query("UPDATE service_members SET name='".$name."', 
                         street = '" . $street . "', city = '" . $city . "', county = '" . $county ."', state = '" . $state . "',
                         country = '" . $country . "', postalcode = '" . $postalcode . "', email = '". $email ."' WHERE id = '" . $id . "'");
                 }else{
                     // Insert member data in the database
                     $conn->query("INSERT INTO service_members (id, name, email, street, city, county, state, country, postalcode)
-                        VALUES ('" . $id . "', '" . $name . "', '" . $email . "', '" . $street . "', '" . $city . "', '" . $country . "', 
+                        VALUES ('" . $id . "', '" . $name . "', '" . $email . "', '" . $street . "', '" . $city . "', '" . $county . "', 
                         '" . $state . "', '" . $country . "', '" . $postalcode . "')");
                 }
             }
