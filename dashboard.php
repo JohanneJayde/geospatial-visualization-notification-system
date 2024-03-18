@@ -38,7 +38,7 @@
                         <a href="#" class="sub-menu-link">
                             <p>Account</p>
                         </a>
-                        <a href="logout.php" class="sub-menu-link">
+                        <a href="php/logout.php" class="sub-menu-link">
                             <p>Logout</p>
                         </a>
                     </div>

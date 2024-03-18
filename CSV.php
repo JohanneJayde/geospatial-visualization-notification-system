@@ -4,10 +4,10 @@
  * Code from https://www.codexworld.com/import-export-csv-file-data-using-php-mysql/
  * and modified to fit project needs
  */
-$servername = "localhost";
-$username = "root";
-$password = "CSCD488_490GroupProject";
-$dbname = "testdb";
+
+
+include ('php/config.php');
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if($conn->connect_error){
@@ -48,12 +48,12 @@ if(!empty($_GET['status'])){
     <div class="col-md-12 head">
         <div class="float-right">
             <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Import</a>
-            <a href="exportCSV.php" class="btn btn-primary"><i class="exp"></i> Export</a>
+            <a href="php/exportCSV.php" class="btn btn-primary"><i class="exp"></i> Export</a>
         </div>
     </div>
     <!-- CSV file upload form -->
     <div class="col-md-12" id="importFrm" style="display: none;">
-        <form action="importCSV.php" method="post" enctype="multipart/form-data">
+        <form action="php/importCSV.php" method="post" enctype="multipart/form-data">
             <input type="file" name="file" />
             <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
         </form>
