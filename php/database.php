@@ -29,7 +29,7 @@
     $sql = "CREATE TABLE IF NOT EXISTS `users` (
         `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         `email` VARCHAR(255) UNIQUE NOT NULL,
-        `passwrd` VARCHAR(50) NOT NULL,
+        `password` VARCHAR(50) NOT NULL,
         `user_role` ENUM('service_member', 'admin') NOT NULL DEFAULT 'service_member',
         `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -88,25 +88,4 @@
     if($conn->query($sql) == TRUE){
     } else{
     echo "Error creating table: " . $conn->error;
-    }
-
-    try {
-    // Connect to the database
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // Set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql = "INSERT IGNORE INTO service_members (ID, name, email, street, city, county, state, country, postalcode)
-    VALUES 
-        (333949, 'John Smitth', 'johnsmith@fake.email', '2710 1st St', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
-        (153945, 'David Jackson', 'davidjackson@fake.email', '575 Bellevue Square', 'Bellevue', 'King', 'Washington', 'United States', '98004'),
-        (653642, 'Hannah Swartz', 'hannahswartz@fake.email', '526 5th', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
-        (903030, 'Johnny Nadder', 'johnnynadder@fake.email', '200 E Barker St', 'Medical Lake', 'Spokane', 'Washington', 'United States', '99022'),
-        (758345, 'Sarah Ramous', 'sarahramous@fake.email', '460 N 6th St', 'Cheney', 'Spokane', 'Washington', 'United States', '99004'),
-        (136849, 'Jeff Johnson', 'jeffjohnson@fake.email', '10201 NE 4th St', 'Bellevue', 'King', 'Washington', 'United States', '98004')";
-
-    // Execute SQL insert statements
-    $conn->exec($sql);
-    } catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
     }
