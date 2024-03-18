@@ -165,9 +165,63 @@
         </div>
 
         <div>
-            <i id="stats" class="fa-solid fa-calculator" title="Stats" ></i>
+            <i id="stats" class="fa-solid fa-calculator open" title="Stats" onclick="togglePopup()"></i>
         </div>
     </div>
+
+    <div class="popup" id="popup1">
+
+        <div class="overlay"></div>
+        <div class="content">
+
+            <i class="fa-solid fa-x close-btn" onclick="togglePopup()"></i>
+            <h1>Today's Wildfire Statistics</h1>
+            <h3><i>Last updated 2 hours, 12 minutes</i></h3>
+            <div class="flex-container">
+                <div class="item">
+                    <p class="stat">Total Number of Large Fires</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">New Large Fires</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">Year-to-data Wildfires</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">Acres Burned on Large Fires</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">Personnel Assigned</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">Year-to-date Acres Burned</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">Avg Acres/Fire</p>
+                    <p>0</p>
+                </div>
+
+                <div class="item">
+                    <p class="stat">Avg Acres/Minutes</p>
+                    <p>0</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -195,6 +249,11 @@
             subMenu.classList.remove("open-menu");
         }
         subInfo.classList.toggle(("open-info"))
+    }
+
+    var popup = document.getElementById("popup1")
+    function togglePopup() {
+        popup.classList.toggle("active");
     }
 
 
