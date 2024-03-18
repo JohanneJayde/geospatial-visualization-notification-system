@@ -86,6 +86,7 @@ if(!empty($_GET['status'])){
                     <th>Postal Code</th>            
                     <th>Fire Name</th>
                     <th>Distance</th>
+                    <th>Status</th>
 
                 </tr>
                 </thead>
@@ -108,7 +109,16 @@ if(!empty($_GET['status'])){
                             <td><?php echo $row['postalcode']; ?></td>
                             <td><?php echo $row['fire_name']; ?></td>
                             <td><?php echo $row['distance']; ?></td>
-
+                            <td><?php switch (true) {
+                                        case ($row['distance'] < 25):
+                                            echo "Danger";
+                                            break;
+                                        case ($row['distance'] < 50):
+                                            echo "Warning";
+                                            break;
+                                        default:
+                                            echo "Safe";
+                                        } ?></td>
                         </tr>
                     <?php } }else{ ?>
                     <tr><td colspan="5">No member(s) found...</td></tr>
